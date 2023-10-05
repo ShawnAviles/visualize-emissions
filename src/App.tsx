@@ -1,8 +1,9 @@
-import Map from 'react-map-gl';
-import Menu from './components/Menu';
+import Map, { Marker } from 'react-map-gl'; import Menu from './components/Menu';
 
 function App() {
   const mapboxToken : string = import.meta.env.VITE_MAPBOX_TOKEN;
+  const StevensLongitude : number = -74.02414311907891;
+  const StevensLatitude : number = 40.74509007605575;
 
   return (
     <>
@@ -10,13 +11,15 @@ function App() {
       <Map
         mapboxAccessToken={mapboxToken}
         initialViewState={{
-          longitude: -74.02414311907891,
-          latitude: 40.74509007605575,
+          longitude: StevensLongitude,
+          latitude: StevensLatitude,
           zoom: 10,
         }}
         style={{ width: '100vw', height: '80vh' }}
         mapStyle="mapbox://styles/mapbox/streets-v12"
-      />
+      >
+        <Marker longitude={StevensLongitude} latitude={StevensLatitude} color="red" anchor="bottom" />
+      </Map>
     </>
   );
 }
