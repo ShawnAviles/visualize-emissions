@@ -1,0 +1,30 @@
+[
+	{
+		"id": "route1",
+		"type": "line",
+		"source": "route1",
+		"layout": {
+			"line-join": "round",
+			"line-cap": "round"
+		},
+		"paint": {
+			"line-color": "black",
+			"line-width": 3,
+			"line-opacity": 1
+		}
+	},
+	{
+		"id": "route2",
+		"type": "line",
+		"source": "route2",
+		"layout": {
+			"line-join": "round",
+			"line-cap": "round"
+		},
+		"paint": {
+			"line-color": "black",
+			"line-width": 3,
+			"line-opacity": 0.2
+		}
+	}
+]
