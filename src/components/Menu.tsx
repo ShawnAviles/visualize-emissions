@@ -3,7 +3,7 @@ function Menu() {
     <div className="flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold underline">Visualize Commuter Emissions</h1>
       <p>
-        By: Matteo, Bryce, Justin, Harris Pyo, & Shawn Aviles
+        By: Matteo, Bryce, Justin, Harris Pyo, & Shawn Aviles -- Stevens Institute of Technology
       </p>
     </div>
   );
