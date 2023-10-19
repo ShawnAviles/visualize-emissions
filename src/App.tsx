@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import Map, { Source, Layer, Marker } from 'react-map-gl';
 // import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Menu from './components/Menu';
 import routes from './components/Routes.json';
 import routeLayers from './components/RouteLayers.json';
@@ -10,6 +11,7 @@ function App() {
   const mapboxToken : string = import.meta.env.VITE_MAPBOX_TOKEN;
   const StevensLongitude : number = -74.02414311907891;
   const StevensLatitude : number = 40.74509007605575;
+  const [routeNum, setRounteNum] = useState(0);
 
   /*
   const urlBase : string = 'https://api.mapbox.com/isochrone/v1/mapbox/';
@@ -28,6 +30,8 @@ function App() {
   return (
     <>
       <Menu />
+      {/* {create two button to toggle between routes plus and minus} */}
+      <button type="button" className="w-32 flex justify-center bg-blue-100 p-3 mb-4 rounded-lg" onClick={() => setRounteNum((routeNum + 1) % routes.length)}>Toggle Route</button>
       <Map
         mapboxAccessToken={mapboxToken}
         initialViewState={{
@@ -39,8 +43,8 @@ function App() {
         mapStyle="mapbox://styles/mapbox/streets-v12"
       >
         <Marker longitude={StevensLongitude} latitude={StevensLatitude} color="#b30538" anchor="bottom" />
-        <Source id="my-data1" type="geojson" data={routes[0]}>
-          <Layer {...routeLayers[0]} />
+        <Source id="my-data1" type="geojson" data={routes[routeNum]}>
+          <Layer {...routeLayers[routeNum]} />
         </Source>
         {/* <Source id="my-data2" type="geojson" data={routes[1]}>
           <Layer {...routeLayers[1]} />
