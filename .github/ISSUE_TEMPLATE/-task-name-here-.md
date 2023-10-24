@@ -7,7 +7,7 @@ assignees: ShawnAviles
 
 ---
 
-## Describe the solution you'd like
+## About
 A clear and concise description of what you want to happen.
 
 ## Acceptance Criteria
