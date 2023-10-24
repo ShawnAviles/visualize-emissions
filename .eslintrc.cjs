@@ -13,7 +13,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'imports'],
   rules: {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
