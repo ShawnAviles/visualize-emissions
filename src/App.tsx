@@ -4,9 +4,9 @@ import Map, { Source, Layer, Marker } from 'react-map-gl';
 // import { useEffect, useState } from 'react';
 import { useState } from 'react';
 import Menu from './components/Menu';
+import ScopeMenu from './components/ScopeMenu';
 import routes from './components/Routes.json';
 import routeLayers from './components/RouteLayers.json';
-import mapIcon from './assets/map-icon.jpg';
 
 function App() {
   const mapboxToken : string = import.meta.env.VITE_MAPBOX_TOKEN;
@@ -40,9 +40,10 @@ function App() {
           latitude: StevensLatitude,
           zoom: 10,
         }}
-        style={{ width: '100vw', height: '80vh' }}
+        style={{ width: '100vw', height: '80vh'}}
         mapStyle="mapbox://styles/mapbox/streets-v12"
       >
+        <ScopeMenu />
         <Marker longitude={StevensLongitude} latitude={StevensLatitude} color="#b30538" anchor="bottom" />
         <Source id="my-data1" type="geojson" data={routes[routeNum]}>
           <Layer {...routeLayers[routeNum]} />
