@@ -4,6 +4,7 @@ const router = express.Router();
 router.route('/')
   .post((req, res) => {
     res.send('Returning large routes data from JSON file');
+    console.log('Returning large routes data from JSON file');
   });
 
 module.exports = router;
