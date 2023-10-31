@@ -3,11 +3,11 @@ Shawn, Harris, Justin
 
 # Setup
 1. Clone Repo Locally (or fork)
-1. Run `npm i` to install all dependencies
-1. Create `.env` file with your MapBox API key to be stored
-   - use the `.env.example` [file as a reference](./.env.example)
+1. cd into `frontend` folder and perform `npm i` to install all dependencies, do the same in the `backend` folder
+1. In `frontend`, create `.env` file with your MapBox API key to be stored
+   - use the `.env.example` [file as a reference](./frontend/.env.example)
    - create a new `.env` file with the variable named `VITE_MAPBOX_TOKEN` (all env variables must be prefixed with _VITE_)
-1. run `npm run dev`
+1. In `frontend`, run `npm run dev`
 
 
 ### Resources
