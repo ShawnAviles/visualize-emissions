@@ -1,10 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const { getRoutes } = require('../controllers/requestController');
 
 router.route('/')
-  .post((req, res) => {
-    res.send('Returning large routes data from JSON file');
-    console.log('Returning large routes data from JSON file');
+  .post(async (req, res) => {
+    const zipCodes = req.body;
+    const output = await getRoutes(zipCodes);
+    res.send({
+      response: 'SUCCESS',
+      data: output
+    });
+    console.log('Returning large routes data from JSON file: ', output);
   });
 
 module.exports = router;
