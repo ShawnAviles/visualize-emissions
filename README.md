@@ -3,11 +3,14 @@ Shawn, Harris, Justin
 
 # Setup
 1. Clone Repo Locally (or fork)
-1. cd into `frontend` folder and perform `npm i` to install all dependencies, do the same in the `backend` folder
 1. In `frontend`, create `.env` file with your MapBox API key to be stored
-   - use the `.env.example` [file as a reference](./frontend/.env.example)
-   - create a new `.env` file with the variable named `VITE_MAPBOX_TOKEN` (all env variables must be prefixed with _VITE_)
-1. In `frontend`, run `npm run dev`
+   - reference the [.env.example](./frontend/.env.example) to see how to set it up
+   - create a new `.env` file with the variable named `VITE_MAPBOX_TOKEN` (all env variables here must be prefixed with _VITE_)
+1. In `backend`, create `.env` file 
+   - [.env.example](./backend/.env.example)
+   - enter valid key for GOOGLE_MAPS_DIRECTIONS_TOKEN
+1. run `docker compuse up`
+   - starts the frontend and backend docker images with the app viewable on `http://localhost:5173` and server running on `http://localhost:3000`
 
 
 ### Resources
