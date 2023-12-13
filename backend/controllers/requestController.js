@@ -11,17 +11,45 @@ const MAPS_TOKEN = process.env.GOOGLE_MAPS_DIRECTIONS_TOKEN;
  */
 async function getPolylineRouteFromZipCode(zipCode) {
   try {
-    // Build request URL
-    // https://developers.google.com/maps/documentation/directions/get-directions#ExampleRequests
-    const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${zipCode}&destination=1+Castle+Point+Terrace,+Hoboken+NJ+07030&key=${MAPS_TOKEN}`;
+    // Build request URL: https://developers.google.com/maps/documentation/routes/migrate-routes
+    const url = 'https://routes.googleapis.com/directions/v2:computeRoutes';
+
+    // Different Transit Modes: https://developers.google.com/maps/documentation/routes/transit-route#transit-route-example
+    const data = {
+      origin: {
+        address: String(zipCode),
+      },
+      destination:{
+        address: "1 Castle Point Terrace, Hoboken, NJ 07030",
+      },
+      travelMode: "DRIVE", // "DRIVE", "BICYCLE", "TRANSIT"
+      computeAlternativeRoutes: false,
+      routeModifiers: {
+        avoidTolls: false,
+        avoidHighways: false,
+        avoidFerries: false
+      },
+      languageCode: "en-US",
+      units: "IMPERIAL"
+    }
+
+    const request = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": MAPS_TOKEN,
+        "X-Goog-FieldMask" : "routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.legs.steps"
+      },
+      body: JSON.stringify(data)
+    }
 
     // Make the API call
-    const routeData = await fetch(url);
+    const routeData = await fetch(url, request);
     const response = await routeData.json();
 
     // Check if we got a successful response with a route
-    if (response.routes && response.routes[0].overview_polyline) {
-      const polylineDataString = response.routes[0].overview_polyline.points;
+    if (response.routes && response.routes[0].polyline) {
+      const polylineDataString = response.routes[0].polyline.encodedPolyline;
       return polylineDataString;
     }
     throw new Error('No route found.');
@@ -84,6 +112,6 @@ async function getRoutes(zipCodes) {
 //   '10020',
 // ]
 
-// getRoutes(testZipCodes).then(routes => console.log(routes));
+// getRoutes(testZipCodes).then(routes => console.log("Outputted Route Data: ", routes));
 
 module.exports = { getRoutes };
