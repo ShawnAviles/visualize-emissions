@@ -27,7 +27,17 @@ function MenuWrapper({ routeNum } : { routeNum: number }) {
 		getRoutes(); 
     // TODO: implement this into mapbox but for not you can open up the console to see the 
     // returned polyline from the server
-	}, []);
+  }, []);
+  
+  const renderPolylines = () => {
+    return (
+      <Source id="my-data" type="geojson" data={{ type: 'FeatureCollection', features: routes }}>
+        {routeLayers.map((layer, index) => (
+          <Layer key={index} {...layer} />
+        ))}
+      </Source>
+    );
+  };
 
 	return (
 		<Map
@@ -42,13 +52,8 @@ function MenuWrapper({ routeNum } : { routeNum: number }) {
       >
         <ScopeMenu />
         <Marker longitude={StevensLongitude} latitude={StevensLatitude} color="#b30538" anchor="bottom" />
-        <Source id="my-data1" type="geojson" data={routes[routeNum]}>
-          <Layer {...routeLayers[routeNum]} />
-        </Source>
-        {/* <Source id="my-data2" type="geojson" data={routes[1]}>
-          <Layer {...routeLayers[1]} />
-        </Source> */}
-      </Map>
+        {renderPolylines()}
+    </Map>
 	);
 }
 
