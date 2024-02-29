@@ -1,4 +1,4 @@
-function Menu() {
+function Header() {
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold underline">Visualize Commuter Emissions</h1>
@@ -9,4 +9,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default Header;

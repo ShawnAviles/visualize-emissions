@@ -16,7 +16,8 @@
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-map-gl": "^7.1.6"
+    "react-map-gl": "^7.1.6",
+    "react-papaparse": "^4.4.0"
   },
   "devDependencies": {
     "@types/node": "^20.8.2",

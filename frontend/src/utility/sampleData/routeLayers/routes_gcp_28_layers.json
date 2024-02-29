@@ -1,0 +1,394 @@
+[
+  {
+    "id": "route-1",
+    "type": "line",
+    "source": "route-1",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "grey",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-2",
+    "type": "line",
+    "source": "route-2",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-3",
+    "type": "line",
+    "source": "route-3",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-4",
+    "type": "line",
+    "source": "route-4",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-5",
+    "type": "line",
+    "source": "route-5",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-6",
+    "type": "line",
+    "source": "route-6",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-7",
+    "type": "line",
+    "source": "route-7",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-8",
+    "type": "line",
+    "source": "route-8",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-9",
+    "type": "line",
+    "source": "route-9",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-10",
+    "type": "line",
+    "source": "route-10",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-11",
+    "type": "line",
+    "source": "route-11",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-12",
+    "type": "line",
+    "source": "route-12",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-13",
+    "type": "line",
+    "source": "route-13",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-14",
+    "type": "line",
+    "source": "route-14",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-15",
+    "type": "line",
+    "source": "route-15",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-16",
+    "type": "line",
+    "source": "route-16",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-17",
+    "type": "line",
+    "source": "route-17",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-18",
+    "type": "line",
+    "source": "route-18",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-19",
+    "type": "line",
+    "source": "route-19",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-20",
+    "type": "line",
+    "source": "route-20",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-21",
+    "type": "line",
+    "source": "route-21",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-22",
+    "type": "line",
+    "source": "route-22",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-23",
+    "type": "line",
+    "source": "route-23",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-24",
+    "type": "line",
+    "source": "route-24",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-25",
+    "type": "line",
+    "source": "route-25",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-26",
+    "type": "line",
+    "source": "route-26",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-27",
+    "type": "line",
+    "source": "route-27",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  },
+  {
+    "id": "route-28",
+    "type": "line",
+    "source": "route-28",
+    "layout": {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    "paint": {
+      "line-color": "black",
+      "line-width": 2,
+      "line-opacity": 1
+    }
+  }
+]

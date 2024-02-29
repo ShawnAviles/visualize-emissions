@@ -1,13 +1,14 @@
 import { useState } from "react"
+import UploadWrapper from "./UploadWrapper"
 
-const ScopeMenu = () => {
+const ScopeMenu = ({ setUploadedData } : { setUploadedData : Function}) => {
   const [selected, setSelected] = useState(true);
   const [min, setMin] = useState('');
   const [max, setMax] = useState('');
   return (
     <div className="w-80 h-76 left-2 top-2 p-4 flex-col bg-slate-50 rounded-xl absolute">
       <div className="mb-4 font-bold">Select Excel File</div>
-      <input className="mb-4" type="file" />
+      <UploadWrapper setUploadedData={setUploadedData} />
       <div>
         <div className="font-bold mb-4">Driving time range is {min} to {max} minutes.</div>
         <div className="ml-4 mb-4">
