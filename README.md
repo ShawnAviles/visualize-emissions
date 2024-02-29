@@ -9,7 +9,7 @@ Shawn, Harris, Justin
 1. In `backend`, create `.env` file 
    - [.env.example](./backend/.env.example)
    - enter valid key for GOOGLE_MAPS_DIRECTIONS_TOKEN
-1. run `docker compuse up`
+1. run `docker compose up`
    - starts the frontend and backend docker images with the app viewable on `http://localhost:5173` and server running on `http://localhost:3000`
 
 

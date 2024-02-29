@@ -1,4 +1,4 @@
-const polyline = require('polyline');
+const polyline = require("polyline");
 const dotenv = require("dotenv").config();
 const MAPS_TOKEN = process.env.GOOGLE_MAPS_DIRECTIONS_TOKEN;
 
@@ -10,53 +10,56 @@ const MAPS_TOKEN = process.env.GOOGLE_MAPS_DIRECTIONS_TOKEN;
  * @throws {Error} If there is an error with the fetch request or if the response does not contain a route.
  */
 async function getPolylineRouteFromZipCode(zipCode) {
-  try {
-    // Build request URL: https://developers.google.com/maps/documentation/routes/migrate-routes
-    const url = 'https://routes.googleapis.com/directions/v2:computeRoutes';
+	try {
+		// Build request URL: https://developers.google.com/maps/documentation/routes/migrate-routes
+		const url = "https://routes.googleapis.com/directions/v2:computeRoutes";
 
-    // Different Transit Modes: https://developers.google.com/maps/documentation/routes/transit-route#transit-route-example
-    const data = {
-      origin: {
-        address: String(zipCode),
-      },
-      destination:{
-        address: "1 Castle Point Terrace, Hoboken, NJ 07030",
-      },
-      travelMode: "DRIVE", // "DRIVE", "BICYCLE", "TRANSIT"
-      computeAlternativeRoutes: false,
-      routeModifiers: {
-        avoidTolls: false,
-        avoidHighways: false,
-        avoidFerries: false
-      },
-      languageCode: "en-US",
-      units: "IMPERIAL"
-    }
+		// Different Transit Modes: https://developers.google.com/maps/documentation/routes/transit-route#transit-route-example
+		const data = {
+			origin: {
+				address: String(zipCode),
+			},
+			destination: {
+				address: "1 Castle Point Terrace, Hoboken, NJ 07030",
+			},
+			polylineEncoding: "GEO_JSON_LINESTRING",
+			travelMode: "DRIVE", // "DRIVE", "BICYCLE", "TRANSIT"
+			computeAlternativeRoutes: false,
+			routeModifiers: {
+				avoidTolls: false,
+				avoidHighways: false,
+				avoidFerries: false,
+			},
+			languageCode: "en-US",
+			units: "IMPERIAL",
+		};
 
-    const request = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Goog-Api-Key": MAPS_TOKEN,
-        "X-Goog-FieldMask" : "routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.legs.steps"
-      },
-      body: JSON.stringify(data)
-    }
+		const request = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"X-Goog-Api-Key": MAPS_TOKEN,
+				"X-Goog-FieldMask":
+					"routes.duration,routes.distanceMeters,routes.polyline.geoJsonLinestring,routes.legs.steps",
+			},
+			body: JSON.stringify(data),
+		};
 
-    // Make the API call
-    const routeData = await fetch(url, request);
-    const response = await routeData.json();
+		// Make the API call
+		const routeData = await fetch(url, request);
+		const response = await routeData.json();
 
-    // Check if we got a successful response with a route
-    if (response.routes && response.routes[0].polyline) {
-      const polylineDataString = response.routes[0].polyline.encodedPolyline;
-      return polylineDataString;
-    }
-    throw new Error('No route found.');
-  } catch (error) {
-    console.error('Error fetching polyline:', error);
-    return 'Error fetching polyline';
-  }
+		// Check if we got a successful response with a route
+		if (response.routes && response.routes[0].polyline) {
+			const polylineGeojson =
+				response.routes[0].polyline.geoJsonLinestring.coordinates;
+			return polylineGeojson;
+		}
+		throw new Error("No route found.");
+	} catch (error) {
+		// console.error('Error fetching polyline:', error);
+		return "Error fetching polyline";
+	}
 }
 
 /**
@@ -65,14 +68,21 @@ async function getPolylineRouteFromZipCode(zipCode) {
  * @param {array} zipCodes - The ZIP Codes to find path for
  */
 async function getAllPolylineRoutes(zipCodes) {
-  const polylineData = {};
-  const promises = zipCodes.map(async zipCode => {
-    const polylineDataString = await getPolylineRouteFromZipCode(zipCode);
-    const decodedPolyline = polyline.decode(polylineDataString);
-    polylineData[zipCode] = decodedPolyline;
-  });
-  await Promise.all(promises);
-  return polylineData;
+	const polylineData = {};
+	const invalidZipcodes = [];
+	const promises = zipCodes.map(async (zipCode) => {
+		const polylineDataString = await getPolylineRouteFromZipCode(zipCode);
+
+		// Updated Approach since we are now requesting geoJsonLinestring data + some error handling
+		if (polylineDataString === "Error fetching polyline") {
+			invalidZipcodes.push(zipCode);
+			return;
+		}
+		polylineData[zipCode] = polylineDataString;
+	});
+	await Promise.all(promises);
+	// return both the polyline data and the invalid zipcodes that didn't return a polyline (invalidZipcodes are not used rn)
+	return [polylineData, invalidZipcodes];
 }
 
 /**
@@ -81,18 +91,18 @@ async function getAllPolylineRoutes(zipCodes) {
  * @param {object} polylineData - Object mapping zipcodes to decoded polyline data
  */
 function formatToRouteObjects(polylineData) {
-  formattedRoutes = [];
-  for (zipCode in polylineData) {
-    formattedRoutes.push({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'LineString',
-        coordinates: polylineData[zipCode],
-      },
-    });
-  };
-  return formattedRoutes;
+	formattedRoutes = [];
+	for (zipCode in polylineData) {
+		formattedRoutes.push({
+			type: "Feature",
+			properties: {},
+			geometry: {
+				type: "LineString",
+				coordinates: polylineData[zipCode],
+			},
+		});
+	}
+	return formattedRoutes;
 }
 
 /**
@@ -101,17 +111,10 @@ function formatToRouteObjects(polylineData) {
  * @param {array} zipCodes - list of all zipcodes {strings} passed in POST
  */
 async function getRoutes(zipCodes) {
-  const polylineData = await getAllPolylineRoutes(zipCodes);
-  const formattedRoutes = formatToRouteObjects(polylineData);
-  return formattedRoutes;
+	// TODO: Let user know of the invalidZipCodes that didn't return a polyline
+	const [polylineData, invalidZipcodes] = await getAllPolylineRoutes(zipCodes);
+	const formattedRoutes = formatToRouteObjects(polylineData);
+	return formattedRoutes;
 }
-
-// const testZipCodes = [
-//   '10016',
-//   '10017',
-//   '10020',
-// ]
-
-// getRoutes(testZipCodes).then(routes => console.log("Outputted Route Data: ", routes));
 
 module.exports = { getRoutes };
