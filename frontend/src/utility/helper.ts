@@ -123,14 +123,14 @@ const generateRouteLayer = (finalRoutePolyline: any, opt: layerOptions) => {
       paint: {
         'line-color': color,
         'line-width': width,
-        'line-opacity': opacity,
-        'line-gradient': [
-          'step',
-          ['line-progress'],
-          'yellow',
-          //animationPhase,
-          'rgba(0, 0, 0, 0)'
-        ]
+        'line-opacity': opacity
+        // 'line-gradient': [
+        //   'step',
+        //   ['line-progress'],
+        //   'yellow',
+        //   animationPhase,
+        //   'rgba(0, 0, 0, 0)'
+        // ]
       }
     });
   }
