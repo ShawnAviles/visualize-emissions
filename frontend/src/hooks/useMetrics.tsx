@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
-import { extractUniqueZipCodesAndModes } from '../utility/helper';
+import { extractUniqueZipCodesAndModes, extractCommutesPerWeek } from '../utility/helper';
 
-interface LiveRoutesObject {
-  [zipCodes: string]: any;
-}
-
-function useGeoJson(url: string, uploadedData: any) {
-  const [liveRoutesObject, setLiveRoutesObject] = useState({} as LiveRoutesObject);
+function useMetrics(url: string, uploadedData: any) {
+  const [metrics, setMetrics] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,8 +14,9 @@ function useGeoJson(url: string, uploadedData: any) {
     let table = (uploadedData as { data: any[]; errors: any[]; meta: any[] }).data;
 
     const zipCodesAndModes: any = extractUniqueZipCodesAndModes(table);
+    const commutesPerWeek: any = extractCommutesPerWeek(table);
 
-    const getRoutes = async (zipCodesAndModes: any) => {
+    const getMetrics = async (zipCodesAndModes: any) => {
       const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(zipCodesAndModes),
@@ -28,16 +25,26 @@ function useGeoJson(url: string, uploadedData: any) {
         }
       });
       const res = await response.json();
-      setLiveRoutesObject(res.data);
+      let finalMetrics = res.data;
+
+      for (let zipCode in finalMetrics) {
+        for (let mode in finalMetrics[zipCode]) {
+          finalMetrics[zipCode][mode].commutesPerWeek =
+            commutesPerWeek[zipCode][mode].commutesPerWeek;
+        }
+      }
+
+      // add commutesPerWeek key to each element based on zipcode data on frontend
+      setMetrics(finalMetrics);
     };
 
     // function call to server
-    getRoutes(zipCodesAndModes)
+    getMetrics(zipCodesAndModes)
       .then(() => setLoading(false))
       .catch((err) => setError(err));
   }, [uploadedData]);
 
-  return { loading, error, liveRoutesObject };
+  return { loading, error, metrics };
 }
 
-export default useGeoJson;
+export default useMetrics;

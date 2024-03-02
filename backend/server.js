@@ -1,15 +1,19 @@
-const express = require('express');
+import express from "express";
+import cors from "cors";
+import corsOptions from "./config/corsOptions.js";
+import health from "./routes/health.js";
+import routes from "./routes/routesPoly.js";
+import metrics from "./routes/routeMetrics.js";
 const app = express();
-const cors = require('cors');
-const corsOptions = require('./config/corsOptions');
 const port = 3000;
-const health = require('./routes/health');
-const routes = require('./routes/routes');
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use('/health', health);
-app.use('/routes', routes);
+app.use("/health", health);
+app.use("/routes", routes);
+app.use("/metrics", metrics);
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
+
+export default app;
