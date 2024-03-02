@@ -1,10 +1,9 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
 
-router.route('/')
-  .get((req, res) => {
-    res.status(200).send('Server is healthy');
-    console.log('Server is healthy');
-  });
+router.route("/").get((req, res) => {
+	res.status(200).send("Server is healthy");
+	console.log("Server is healthy");
+});
 
-module.exports = router;
+export default router;

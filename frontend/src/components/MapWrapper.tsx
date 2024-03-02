@@ -7,21 +7,49 @@ import ScopeMenu from './ScopeMenu';
 import routes from '../utility/sampleData/routePolylines/simple_routes_5.json';
 import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layers.json';
 import useGeoJson from '../hooks/useGeoJson.tsx';
+import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer } from '../utility/helper';
 
 // Used this to test the liveRoutes data as it is saved locally, atp it is just an extra sample data file:
 // import liveRoutesStatic from '../utility/sampleData/routePolylines/routes_gcp_28.json';
 // import liveRoutesLayersStatic from '../utility/sampleData/routeLayers/routes_gcp_28_layers.json';
 
+type TransportationModes =
+  | 'DRIVE'
+  | 'TRAIN'
+  | 'SUBWAY'
+  | 'LIGHT_RAIL'
+  | 'BUS'
+  | 'WALK'
+  | 'BICYCLE';
+
 function MenuWrapper() {
   const mapboxToken: string = import.meta.env.VITE_MAPBOX_TOKEN;
   const StevensLongitude: number = -74.02414311907891;
   const StevensLatitude: number = 40.74509007605575;
+  const [uploadedData, setUploadedData] = useState({ data: [], errors: [], meta: [] });
   const [sources, setSources] = useState([] as React.ReactElement[]);
 
-  const { loading, error, liveRoutesObject, setUploadedData } = useGeoJson(
-    'http://localhost:3000/routes'
-  );
+  const {
+    loading: geoJsonLoading,
+    error: geoJsonError,
+    liveRoutesObject
+  } = useGeoJson('http://localhost:3000/routes', uploadedData);
+
+  const {
+    loading: metricsLoading,
+    error: metricsError,
+    metrics
+  } = useMetrics('http://localhost:3000/metrics', uploadedData);
+
+  // @h-pyo
+  // TODO: Remove this. This is just for logging and showing how to use
+  // the custom useMetrics hook to get metrics data
+  useEffect(() => {
+    console.log('metrics', metrics);
+    console.log('loadingState for metrics', metricsLoading);
+    console.log('errorState for metrics', metricsError);
+  }, [metrics]);
 
   useEffect(() => {
     const renderPolyline = () => {
@@ -49,7 +77,9 @@ function MenuWrapper() {
       const existingModesOfTransport = Object.keys(liveRoutesObject);
       for (let mode of existingModesOfTransport) {
         let liveRoutes: object[] = liveRoutesObject[mode];
-        let liveRoutesLayers = generateRouteLayer(liveRoutes, { modeOfTransport: mode });
+        let liveRoutesLayers = generateRouteLayer(liveRoutes, {
+          modeOfTransport: mode as TransportationModes
+        });
         sources.push(
           <Source
             id={mode}
@@ -67,6 +97,7 @@ function MenuWrapper() {
           </Source>
         );
       }
+      // TODO: Remove later
       console.log('CREATED', sources);
       setSources(sources);
     };
@@ -84,7 +115,11 @@ function MenuWrapper() {
       style={{ width: '100vw', height: '80vh' }}
       mapStyle="mapbox://styles/mapbox/light-v11"
     >
-      <ScopeMenu setUploadedData={setUploadedData} loading={loading} error={error} />
+      <ScopeMenu
+        setUploadedData={setUploadedData}
+        loading={geoJsonLoading}
+        error={geoJsonError}
+      />
       <Marker
         longitude={StevensLongitude}
         latitude={StevensLatitude}

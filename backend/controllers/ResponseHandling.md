@@ -17,27 +17,31 @@ The API accepts POST requests with the following parameters:
 - `units`: Unit system for the response (e.g., "IMPERIAL").
 
 ## Response Structure
-s
-The response includes the following key information:
+
+The response includes the following key information which is filtered by `X-Goog-FieldMask`:
 
 - `legs`: Array of route segments. Each leg contains an array of `steps`.
 - `distanceMeters`: Distance of the route in meters.
 - `duration`: Estimated travel time in seconds.
 - `polyline`: Encoded polyline data for the route.
-  - `encodedPolyline`: A string representing the encoded polyline.
+  - `geoJsonLineString`: A string representing the polyline coordinates.
 
 ## Example Response
 
 ```json
 {
-  "legs": [
-    { "steps": [/* Array of steps */] }
-  ],
-  "distanceMeters": 8471,
-  "duration": "2853s",
-  "polyline": {
-    "encodedPolyline": "ymuwFbfpbMy@lCdBjAAB[`ADB]bA@?LJoB~FiE~MyGpS...[truncated for brevity]"
-  }
+	"legs": [
+		{
+			"steps": [
+				/* Array of steps */
+			]
+		}
+	],
+	"distanceMeters": 8471,
+	"duration": "2853s",
+	"polyline": {
+		"geoJsonLineString": "[[longCoord, latCoord],[longCoord, latCoord],...]"
+	}
 }
 ```
 

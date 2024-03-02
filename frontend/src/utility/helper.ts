@@ -16,6 +16,28 @@ interface extractedData {
   [key: string]: ZipCodeData;
 }
 
+// can add more to this interface as we customize the layers
+interface layerOptions {
+  color?: string;
+  width?: number;
+  opacity?: number;
+  modeOfTransport: TransportationModes;
+  zipCode?: string;
+}
+
+interface modeColorsObject {
+  [key: string]: string;
+}
+
+type TransportationModes =
+  | 'DRIVE'
+  | 'TRAIN'
+  | 'SUBWAY'
+  | 'LIGHT_RAIL'
+  | 'BUS'
+  | 'WALK'
+  | 'BICYCLE';
+
 const extractUniqueZipCodesAndModes = (table: string[][]) => {
   let resultZipCodesWithModes: extractedData = {};
 
@@ -59,18 +81,66 @@ const extractUniqueZipCodesAndModes = (table: string[][]) => {
   return resultZipCodesWithModes;
 };
 
-// can add more to this interface as we customize the layers
-interface layerOptions {
-  color?: string;
-  width?: number;
-  opacity?: number;
-  modeOfTransport: string;
-  zipCode?: string;
+// Extracts the people count based on the uploaded data
+/* 
+_Structure of returned output_
+{
+  "zipCode" : {
+    "modeOfTransport": {
+      "commutesPerWeek": "12",
+    },
+  },
+  "07030" : {
+    "BUS": {
+      "commutesPerWeek": "3",
+    },
+  },
+  ...
 }
+*/
 
-interface modeColorsObject {
-  [key: string]: string;
-}
+const extractCommutesPerWeek = (table: string[][]) => {
+  let resultCommuteCountObj: any = {};
+
+  const zipCodeColumnIndex: number = table[0].indexOf('ZIP Code');
+  const modeColumnIndex: number = table[0].indexOf('Mode of Transport');
+  const peopleColumnIndex: number = table[0].indexOf('Frequency of Commuting Days');
+
+  // Error Handling
+  if (zipCodeColumnIndex === undefined) {
+    console.log('No zip code column found in the uploaded data.');
+    // will need to throw error to user about missing Zip code column
+    return;
+  }
+  if (modeColumnIndex === undefined) {
+    console.log('No mode of transport column found in the uploaded data.');
+    // will need to throw error to user about missing mode of transport column
+    return;
+  }
+
+  if (peopleColumnIndex === undefined) {
+    console.log('No frequency of commute count column found in the uploaded data.');
+    // will need to throw error to user about missing people count column
+    return;
+  }
+
+  table = table.slice(1); // remove the header row
+
+  // get array of values in column
+  table.map((row: string[]) => {
+    const zipCode: string = row[zipCodeColumnIndex];
+    const modeOfTransport: string = getModeOfTransportation(row[modeColumnIndex]);
+    const currentFreqPerWeek: number = parseInt(row[peopleColumnIndex]);
+
+    if (!resultCommuteCountObj[zipCode]) resultCommuteCountObj[zipCode] = {};
+    if (!resultCommuteCountObj[zipCode][modeOfTransport])
+      resultCommuteCountObj[zipCode][modeOfTransport] = { commutesPerWeek: 0 };
+
+    resultCommuteCountObj[zipCode][modeOfTransport].commutesPerWeek += currentFreqPerWeek;
+  });
+
+  return resultCommuteCountObj;
+};
 
 // Creates custom layer object based on the final polyelines data object that was passed
 // Takes `opt` as an object to pass in the color, line thickness of routeof the route
@@ -136,6 +206,44 @@ const generateRouteLayer = (finalRoutePolyline: any, opt: layerOptions) => {
   }
 
   return finalLayers;
+};
+
+/**
+ * Returns the mode of transport that is strictly used our the API call: "DRIVE", "TRAIN", "SUBWAY", "LIGHT_RAIL", "BUS"
+ *
+ * @param {string} mode - mode of transport
+ * @returns {string} "DRIVE", "TRAIN", "SUBWAY", "LIGHT_RAIL", "BUS", "WALK", "BICYCLE"
+ */
+const getModeOfTransportation = (mode: string): TransportationModes => {
+  mode = mode.toLowerCase();
+
+  // set of different modes
+  const driveMode = new Set(['car', 'rideshare', 'stevens shuttle', 'shuttle']);
+  const walkMode = new Set(['walk']);
+  const bikeMode = new Set(['bike', 'bicycle', 'scooter', 'citibike']);
+  const trainMode = new Set(['nj transit', 'path']);
+  const subwayMode = new Set(['subway']);
+  const lightRailMode = new Set(['light rail']);
+  const busMode = new Set(['bus', 'nj transit bus']);
+
+  if (driveMode.has(mode)) {
+    return 'DRIVE';
+  } else if (trainMode.has(mode)) {
+    return 'TRAIN';
+  } else if (subwayMode.has(mode)) {
+    return 'SUBWAY';
+  } else if (lightRailMode.has(mode)) {
+    return 'LIGHT_RAIL';
+  } else if (busMode.has(mode)) {
+    return 'BUS';
+  } else if (walkMode.has(mode)) {
+    return 'WALK';
+  } else if (bikeMode.has(mode)) {
+    return 'BICYCLE';
+  } else {
+    // default to drive
+    return 'DRIVE';
+  }
 };
 
 // Data that may be helpful later for grouping data in graphs and informational purposes
@@ -263,4 +371,10 @@ const cityZipCodes = {
   ])
 };
 
-export { extractUniqueZipCodesAndModes, generateRouteLayer, cityZipCodes };
+export {
+  extractUniqueZipCodesAndModes,
+  extractCommutesPerWeek,
+  generateRouteLayer,
+  cityZipCodes,
+  getModeOfTransportation
+};
