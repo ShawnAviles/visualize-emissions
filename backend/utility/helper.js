@@ -73,7 +73,7 @@ async function getPolylineRouteFromZipCode(zipCode, travelMode = "DRIVE") {
 	}
 }
 
-async function getCalculationFromZipCode(zipCode, travelMode = "DRIVE") {
+async function getMetricsFromZipCode(zipCode, travelMode = "DRIVE") {
 	// handle different types of transportation
 	let [enumTravelMode, transitPreferences] = modeOfTransportToEnum(travelMode);
 	travelMode = enumTravelMode;
@@ -161,7 +161,7 @@ async function getAllPolylineRoutes(zipCodesWithModes) {
 			);
 			if (polylineDataString === "Error fetching polyline") {
 				invalidZipcodes.push(zipCode);
-				return;
+				continue;
 			}
 
 			// append if it exists
@@ -176,6 +176,60 @@ async function getAllPolylineRoutes(zipCodesWithModes) {
 	// return both the zipcode with polyline data for each mode of transportation and the
 	// invalid zipcodes that didn't return a polyline (invalidZipcodes are not used rn)
 	return [polylineData, invalidZipcodes];
+}
+
+/**
+ * Returns object with all the calculation data
+ * (distance in meters, duration in seconds, legs which can be used to determine which steps require a vehicle and which don't)
+ * for each mode of transport within each zipcode
+ *
+ * @param {array} zipCodesWithModes - object of all zipcodes {strings} passed in POST with their respective modes of transport array of {strings}
+ */
+async function getAllMetricsData(zipCodesWithModes) {
+	/* metricsData: {
+		[
+			"zipCode1": {
+				"DRIVE": {
+					"distanceMeters": 1287,
+					"duration": 300,
+					"legs": [steps...]
+				}
+    		...
+			},
+			...
+		]
+  },
+	*/
+	const metricsData = [];
+	const invalidZipcodes = [];
+
+	for (let zipCode in zipCodesWithModes) {
+		// handle all types of MODES and STRICTLY convert them to "DRIVE", "TRAIN", "SUBWAY", "LIGHT_RAIL", or "BUS"
+		const modesOfTransport = zipCodesWithModes[zipCode].modeOfTransport;
+		for (let mode of modesOfTransport) {
+			mode = getModeOfTransportation(mode);
+			/* 
+			requestData: {
+				distanceMeters: number,
+				duration: number,
+				legs: [steps...]
+			}
+			*/
+			const requestData = await getMetricsFromZipCode(zipCode, mode);
+			if (requestData === "Error fetching route data") {
+				invalidZipcodes.push(zipCode);
+				continue;
+			}
+
+			// append if it exists
+			if (!metricsData[zipCode]) metricsData[zipCode] = {};
+
+			metricsData[zipCode][mode] = requestData;
+		}
+	}
+	// return both the zipcode with polyline data for each mode of transportation and the
+	// invalid zipcodes that didn't return a polyline (invalidZipcodes are not used rn)
+	return [metricsData, invalidZipcodes];
 }
 
 /**
@@ -304,61 +358,6 @@ function modeOfTransportToEnum(travelMode) {
 			break;
 	}
 	return [travelMode, transitPreferences];
-}
-
-/**
- * Returns object with all the calculation data
- * (distance in meters, duration in seconds, legs which can be used to determine which steps require a vehicle and which don't)
- * for each mode of transport within each zipcode
- *
- * @param {array} zipCodesWithModes - object of all zipcodes {strings} passed in POST with their respective modes of transport array of {strings}
- */
-async function getAllMetricsData(zipCodesWithModes) {
-	/* metricsData: {
-		[
-			"zipCode1": {
-				"DRIVE": {
-					"distanceMeters": 1287,
-					"duration": 300,
-					"legs": [steps...]
-				}
-    		...
-			},
-			...
-		]
-  },
-	*/
-	const metricsData = [];
-	const invalidZipcodes = [];
-
-	for (let zipCode in zipCodesWithModes) {
-		// handle all types of MODES and STRICTLY convert them to "DRIVE", "TRAIN", "SUBWAY", "LIGHT_RAIL", or "BUS"
-		const modesOfTransport = zipCodesWithModes[zipCode].modeOfTransport;
-		for (let mode of modesOfTransport) {
-			const formattedRouteData = {};
-			mode = getModeOfTransportation(mode);
-			/* 
-			requestData: {
-				distanceMeters: number,
-				duration: number,
-				legs: [steps...]
-			}
-			*/
-			const requestData = await getCalculationFromZipCode(zipCode, mode);
-			if (requestData === "Error fetching route data") {
-				invalidZipcodes.push(zipCode);
-				return;
-			}
-
-			// append if it exists
-			if (!metricsData[zipCode]) metricsData[zipCode] = {};
-
-			metricsData[zipCode][mode] = requestData;
-		}
-	}
-	// return both the zipcode with polyline data for each mode of transportation and the
-	// invalid zipcodes that didn't return a polyline (invalidZipcodes are not used rn)
-	return [metricsData, invalidZipcodes];
 }
 
 // Format of return data (array):
