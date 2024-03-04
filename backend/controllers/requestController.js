@@ -25,9 +25,13 @@ async function getRoutes(zipCodesWithModes) {
  *
  * @param {array} zipCodesWithModes - object of all zipcodes {strings} passed in POST with their respective modes of transport array of {strings}
  */
-async function getMetrics(zipCodesWithModes) {
+async function getMetrics(zipCodesAndTable) {
+	const zipCodesWithModes = zipCodesAndTable.zipCodesAndModes;
+	const table = zipCodesAndTable.table;
+
 	const [metrics, invalidZipcodes] = await getAllMetricsData(zipCodesWithModes);
-	const formattedMetrics = formatMasterMetricsDataObject(metrics);
+	const formattedMetrics = formatMasterMetricsDataObject(metrics, table);
+
 	return formattedMetrics;
 }
 

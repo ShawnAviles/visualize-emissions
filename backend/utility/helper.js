@@ -200,7 +200,7 @@ async function getAllMetricsData(zipCodesWithModes) {
 		]
   },
 	*/
-	const metricsData = [];
+	const metricsData = {};
 	const invalidZipcodes = [];
 
 	for (let zipCode in zipCodesWithModes) {
@@ -389,7 +389,7 @@ function modeOfTransportToEnum(travelMode) {
 //   },
 //   ...
 // ]
-function formatMasterMetricsDataObject(masterMetricsData) {
+function formatMasterMetricsDataObject(masterMetricsData, table) {
 	const formattedData = {};
 	// these modes require us to parse the legs to get vehicle miles
 	const publicModesOfTransportation = new Set([
@@ -401,6 +401,7 @@ function formatMasterMetricsDataObject(masterMetricsData) {
 	// Green Modes of Transporation ("WALK", "BICYCLE") will have vehicle miles set to 0
 	const greenModesOfTransporation = new Set(["WALK", "BICYCLE"]);
 
+	// iterate over the masterMetricsData and format the data
 	for (let zipCode in masterMetricsData) {
 		const modesOfTransport = masterMetricsData[zipCode];
 		for (let mode in modesOfTransport) {
@@ -433,6 +434,21 @@ function formatMasterMetricsDataObject(masterMetricsData) {
 			curr.totalSeconds = Number(modesOfTransport[mode].duration.slice(0, -1));
 		}
 	}
+
+	// Do the same and add commutesPerWeek from the table data to the formattedData object
+	// Note: this is iterating over the uploaded table from user on fronted not GCP data, so it is handled separately
+	const commutesPerWeek = extractCommutesPerWeek(table);
+	for (let zipCode in formattedData) {
+		for (let mode in formattedData[zipCode]) {
+			if (commutesPerWeek[zipCode] && commutesPerWeek[zipCode][mode]) {
+				formattedData[zipCode][mode].commutesPerWeek =
+					commutesPerWeek[zipCode][mode].commutesPerWeek;
+			} else {
+				console.log("No commutes per week data found for:", zipCode, mode);
+			}
+		}
+	}
+
 	return formattedData;
 }
 
@@ -448,6 +464,52 @@ function getVehicleMetersTraveledFromSteps(steps) {
 	}
 	return vehicleMeters;
 }
+
+const extractCommutesPerWeek = (table) => {
+	let resultCommuteCountObj = {};
+
+	const zipCodeColumnIndex = table[0].indexOf("ZIP Code");
+	const modeColumnIndex = table[0].indexOf("Mode of Transport");
+	const peopleColumnIndex = table[0].indexOf("Frequency of Commuting Days");
+
+	// Error Handling
+	if (zipCodeColumnIndex === undefined) {
+		console.log("No zip code column found in the uploaded data.");
+		// will need to throw error to user about missing Zip code column
+		return;
+	}
+	if (modeColumnIndex === undefined) {
+		console.log("No mode of transport column found in the uploaded data.");
+		// will need to throw error to user about missing mode of transport column
+		return;
+	}
+
+	if (peopleColumnIndex === undefined) {
+		console.log(
+			"No frequency of commute count column found in the uploaded data."
+		);
+		// will need to throw error to user about missing people count column
+		return;
+	}
+
+	table = table.slice(1); // remove the header row
+
+	// get array of values in column
+	table.map((row) => {
+		const zipCode = row[zipCodeColumnIndex];
+		const modeOfTransport = getModeOfTransportation(row[modeColumnIndex]);
+		const currentFreqPerWeek = parseInt(row[peopleColumnIndex]);
+
+		if (!resultCommuteCountObj[zipCode]) resultCommuteCountObj[zipCode] = {};
+		if (!resultCommuteCountObj[zipCode][modeOfTransport])
+			resultCommuteCountObj[zipCode][modeOfTransport] = { commutesPerWeek: 0 };
+
+		resultCommuteCountObj[zipCode][modeOfTransport].commutesPerWeek +=
+			currentFreqPerWeek;
+	});
+
+	return resultCommuteCountObj;
+};
 
 export {
 	getAllPolylineRoutes,
