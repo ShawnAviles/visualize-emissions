@@ -124,7 +124,7 @@ function MenuWrapper() {
         longitude={StevensLongitude}
         latitude={StevensLatitude}
         color="#b30538"
-        anchor="bottom"
+        anchor="center"
       />
       <ScaleControl unit="imperial" />
       {sources.length > 0 && sources}
