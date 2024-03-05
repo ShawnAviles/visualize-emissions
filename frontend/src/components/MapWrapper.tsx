@@ -9,6 +9,7 @@ import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layer
 import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer } from '../utility/helper';
+import Barplot from './Barplot.tsx';
 
 // Used this to test the liveRoutes data as it is saved locally, atp it is just an extra sample data file:
 // import liveRoutesStatic from '../utility/sampleData/routePolylines/routes_gcp_28.json';
@@ -45,11 +46,11 @@ function MenuWrapper() {
   // @h-pyo
   // TODO: Remove this. This is just for logging and showing how to use
   // the custom useMetrics hook to get metrics data
-  useEffect(() => {
-    console.log('metrics', metrics);
-    console.log('loadingState for metrics', metricsLoading);
-    console.log('errorState for metrics', metricsError);
-  }, [metrics]);
+  // useEffect(() => {
+  //   console.log('metrics', metrics);
+  //   console.log('loadingState for metrics', metricsLoading);
+  //   console.log('errorState for metrics', metricsError);
+  // }, [metrics]);
 
   useEffect(() => {
     const renderPolyline = () => {
@@ -105,6 +106,7 @@ function MenuWrapper() {
   }, [liveRoutesObject]);
 
   return (
+    <>
     <Map
       mapboxAccessToken={mapboxToken}
       initialViewState={{
@@ -129,6 +131,8 @@ function MenuWrapper() {
       <ScaleControl unit="imperial" />
       {sources.length > 0 && sources}
     </Map>
+    {metrics && <Barplot data={metrics as { name: string; value: number }[]} />}
+    </>
   );
 }
 
