@@ -99,49 +99,6 @@ _Structure of returned output_
 }
 */
 
-const extractCommutesPerWeek = (table: string[][]) => {
-  let resultCommuteCountObj: any = {};
-
-  const zipCodeColumnIndex: number = table[0].indexOf('ZIP Code');
-  const modeColumnIndex: number = table[0].indexOf('Mode of Transport');
-  const peopleColumnIndex: number = table[0].indexOf('Frequency of Commuting Days');
-
-  // Error Handling
-  if (zipCodeColumnIndex === undefined) {
-    console.log('No zip code column found in the uploaded data.');
-    // will need to throw error to user about missing Zip code column
-    return;
-  }
-  if (modeColumnIndex === undefined) {
-    console.log('No mode of transport column found in the uploaded data.');
-    // will need to throw error to user about missing mode of transport column
-    return;
-  }
-
-  if (peopleColumnIndex === undefined) {
-    console.log('No frequency of commute count column found in the uploaded data.');
-    // will need to throw error to user about missing people count column
-    return;
-  }
-
-  table = table.slice(1); // remove the header row
-
-  // get array of values in column
-  table.map((row: string[]) => {
-    const zipCode: string = row[zipCodeColumnIndex];
-    const modeOfTransport: string = getModeOfTransportation(row[modeColumnIndex]);
-    const currentFreqPerWeek: number = parseInt(row[peopleColumnIndex]);
-
-    if (!resultCommuteCountObj[zipCode]) resultCommuteCountObj[zipCode] = {};
-    if (!resultCommuteCountObj[zipCode][modeOfTransport])
-      resultCommuteCountObj[zipCode][modeOfTransport] = { commutesPerWeek: 0 };
-
-    resultCommuteCountObj[zipCode][modeOfTransport].commutesPerWeek += currentFreqPerWeek;
-  });
-
-  return resultCommuteCountObj;
-};
-
 // Creates custom layer object based on the final polyelines data object that was passed
 // Takes `opt` as an object to pass in the color, line thickness of routeof the route
 const generateRouteLayer = (finalRoutePolyline: any, opt: layerOptions) => {
@@ -373,7 +330,6 @@ const cityZipCodes = {
 
 export {
   extractUniqueZipCodesAndModes,
-  extractCommutesPerWeek,
   generateRouteLayer,
   cityZipCodes,
   getModeOfTransportation

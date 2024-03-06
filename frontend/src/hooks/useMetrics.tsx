@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { extractUniqueZipCodesAndModes, extractCommutesPerWeek } from '../utility/helper';
+import { extractUniqueZipCodesAndModes } from '../utility/helper';
 
 function useMetrics(url: string, uploadedData: any) {
-  const [metrics, setMetrics] = useState({});
+  const [metrics, setMetrics] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -14,12 +14,16 @@ function useMetrics(url: string, uploadedData: any) {
     let table = (uploadedData as { data: any[]; errors: any[]; meta: any[] }).data;
 
     const zipCodesAndModes: any = extractUniqueZipCodesAndModes(table);
-    const commutesPerWeek: any = extractCommutesPerWeek(table);
 
-    const getMetrics = async (zipCodesAndModes: any) => {
+    const zipCodesAndTable: object = {
+      zipCodesAndModes: zipCodesAndModes,
+      table: table
+    };
+
+    const getMetrics = async (requestBody: object) => {
       const response = await fetch(url, {
         method: 'POST',
-        body: JSON.stringify(zipCodesAndModes),
+        body: JSON.stringify(requestBody),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -27,19 +31,12 @@ function useMetrics(url: string, uploadedData: any) {
       const res = await response.json();
       let finalMetrics = res.data;
 
-      for (let zipCode in finalMetrics) {
-        for (let mode in finalMetrics[zipCode]) {
-          finalMetrics[zipCode][mode].commutesPerWeek =
-            commutesPerWeek[zipCode][mode].commutesPerWeek;
-        }
-      }
-
       // add commutesPerWeek key to each element based on zipcode data on frontend
       setMetrics(finalMetrics);
     };
 
     // function call to server
-    getMetrics(zipCodesAndModes)
+    getMetrics(zipCodesAndTable)
       .then(() => setLoading(false))
       .catch((err) => setError(err));
   }, [uploadedData]);
