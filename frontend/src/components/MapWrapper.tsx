@@ -32,6 +32,7 @@ function MenuWrapper() {
   const StevensLatitude: number = 40.74509007605575;
   const [uploadedData, setUploadedData] = useState({ data: [], errors: [], meta: [] });
   const [sources, setSources] = useState([] as React.ReactElement[]);
+    const [modeFilter, setModeFilter] = useState('all');
 
   const {
     loading: geoJsonLoading,
@@ -78,11 +79,18 @@ function MenuWrapper() {
       // create custom layer object based on liveRoutes data, this must be unique for each set of route data uploaded
       const sources: React.ReactElement[] = [];
       const existingModesOfTransport = Object.keys(liveRoutesObject);
+
       for (let mode of existingModesOfTransport) {
+        if (modeFilter !== 'all' && modeFilter !== mode) {
+          // Skip if modeFilter is set and the current mode is not the selected one
+          continue;
+        }
+
         let liveRoutes: object[] = liveRoutesObject[mode];
         let liveRoutesLayers = generateRouteLayer(liveRoutes, {
           modeOfTransport: mode as TransportationModes
         });
+
         sources.push(
           <Source
             id={mode}
@@ -104,38 +112,46 @@ function MenuWrapper() {
       console.log('CREATED', sources);
       setSources(sources);
     };
+
     renderPolyline();
-  }, [liveRoutesObject]);
+  }, [liveRoutesObject, modeFilter]);
 
   return (
     <>
-    <Map
-      mapboxAccessToken={mapboxToken}
-      initialViewState={{
-        longitude: StevensLongitude,
-        latitude: StevensLatitude,
-        zoom: 10
-      }}
-      style={{ width: '100vw', height: '80vh' }}
-      mapStyle="mapbox://styles/mapbox/light-v11"
-    >
-      <ScopeMenu
-        setUploadedData={setUploadedData}
-        loading={geoJsonLoading}
-        error={geoJsonError}
-      />
-      <Marker
-        longitude={StevensLongitude}
-        latitude={StevensLatitude}
-        color="#b30538"
-        anchor="center"
-      />
-      <ScaleControl unit="imperial" />
-      {sources.length > 0 && sources}
-    </Map>
-    {metrics[0] && <Barplot data={metrics[0] as { name: string; value: number }[]} />}
-    {metrics[0] && <PieChart data={metrics[0] as { name: string; value: number }[]} />}
-    {metrics[1] && <ViolinPlot data={metrics[1] as { name: string; value: number }[]} width={800} height={500} />}
+      <Map
+        mapboxAccessToken={mapboxToken}
+        initialViewState={{
+          longitude: StevensLongitude,
+          latitude: StevensLatitude,
+          zoom: 10
+        }}
+        style={{ width: '100vw', height: '80vh' }}
+        mapStyle="mapbox://styles/mapbox/light-v11"
+      >
+        <ScopeMenu
+          setUploadedData={setUploadedData}
+          loading={geoJsonLoading}
+          error={geoJsonError}
+          setModeFilter={setModeFilter} // Pass the setModeFilter function to ScopeMenu
+        />
+        <Marker
+          longitude={StevensLongitude}
+          latitude={StevensLatitude}
+          color="#b30538"
+          anchor="center"
+        />
+        <ScaleControl unit="imperial" />
+        {sources.length > 0 && sources}
+      </Map>
+      {metrics[0] && <Barplot data={metrics[0] as { name: string; value: number }[]} />}
+      {metrics[0] && <PieChart data={metrics[0] as { name: string; value: number }[]} />}
+      {metrics[1] && (
+        <ViolinPlot
+          data={metrics[1] as { name: string; value: number }[]}
+          width={800}
+          height={500}
+        />
+      )}
     </>
   );
 }
