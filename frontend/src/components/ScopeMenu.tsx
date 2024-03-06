@@ -4,15 +4,34 @@ import UploadWrapper from './UploadWrapper';
 const ScopeMenu = ({
   setUploadedData,
   loading,
-  error = null
+  error = null,
+  setModeFilter
 }: {
   setUploadedData: Function;
   loading: boolean;
   error: any;
+  setModeFilter: Function;
 }) => {
-  const [selected, setSelected] = useState(true);
+  const [selected, setSelected] = useState('all');
   const [min, setMin] = useState('');
   const [max, setMax] = useState('');
+
+  const handleModeSelection = (mode: string) => {
+    setSelected(mode);
+    setModeFilter(mode);
+  };
+
+  const transportationModes = [
+    'all',
+    'DRIVE',
+    'TRAIN',
+    'SUBWAY',
+    'LIGHT_RAIL',
+    'BUS',
+    'WALK',
+    'BICYCLE'
+  ];
+
   return (
     <div className="w-80 h-76 left-2 top-2 p-4 flex-col bg-slate-50 rounded-xl absolute">
       <div className="mb-4 font-bold">Select Excel File</div>
@@ -48,28 +67,17 @@ const ScopeMenu = ({
         </div>
       </div>
       <div className="font-bold mb-2">Choose a travel mode:</div>
-      <div className="flex items-center">
-        <div
-          className={
-            selected
-              ? 'px-4 py-[2px] bg-gray-500 rounded-full text-slate-50 mr-5 hover:cursor-pointer text-sm'
-              : 'px-2 mr-5 text-gray-500 hover:cursor-pointer text-sm'
-          }
-          onClick={() => setSelected(!selected)}
-        >
-          Driving
-        </div>
-        <div
-          className={
-            !selected
-              ? 'px-4 py-[2px] bg-gray-500 rounded-full text-slate-50 hover:cursor-pointer text-sm'
-              : ' px-2 text-gray-500 hover:cursor-pointer text-sm'
-          }
-          onClick={() => setSelected(!selected)}
-        >
-          Driving Traffic
-        </div>
-      </div>
+      <select
+        className="p-2 mb-4"
+        value={selected}
+        onChange={(e) => handleModeSelection(e.target.value)}
+      >
+        {transportationModes.map((mode) => (
+          <option key={mode} value={mode}>
+            {mode}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
