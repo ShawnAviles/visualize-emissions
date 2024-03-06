@@ -10,6 +10,8 @@ import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer } from '../utility/helper';
 import Barplot from './Barplot.tsx';
+import PieChart from './PieChart.tsx';
+import ViolinPlot from './ViolinPlot.tsx';
 
 // Used this to test the liveRoutes data as it is saved locally, atp it is just an extra sample data file:
 // import liveRoutesStatic from '../utility/sampleData/routePolylines/routes_gcp_28.json';
@@ -40,17 +42,17 @@ function MenuWrapper() {
   const {
     loading: metricsLoading,
     error: metricsError,
-    metrics
+    metrics,
   } = useMetrics('http://localhost:3000/metrics', uploadedData);
 
   // @h-pyo
   // TODO: Remove this. This is just for logging and showing how to use
   // the custom useMetrics hook to get metrics data
-  // useEffect(() => {
-  //   console.log('metrics', metrics);
-  //   console.log('loadingState for metrics', metricsLoading);
-  //   console.log('errorState for metrics', metricsError);
-  // }, [metrics]);
+  useEffect(() => {
+    console.log('metrics', metrics);
+    console.log('loadingState for metrics', metricsLoading);
+    console.log('errorState for metrics', metricsError);
+  }, [metrics]);
 
   useEffect(() => {
     const renderPolyline = () => {
@@ -131,7 +133,9 @@ function MenuWrapper() {
       <ScaleControl unit="imperial" />
       {sources.length > 0 && sources}
     </Map>
-    {metrics && <Barplot data={metrics as { name: string; value: number }[]} />}
+    {metrics[0] && <Barplot data={metrics[0] as { name: string; value: number }[]} />}
+    {metrics[0] && <PieChart data={metrics[0] as { name: string; value: number }[]} />}
+    {metrics[1] && <ViolinPlot data={metrics[1] as { name: string; value: number }[]} width={800} height={500} />}
     </>
   );
 }

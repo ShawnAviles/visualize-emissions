@@ -8,6 +8,9 @@ import {
   select
 } from "d3";
 import { useEffect, useRef } from "react";
+import Title from "./Title";
+import YAxisTitle from "./YAxisTitle";
+import XAxisTitle from "./XAxisTitle";
 
 const MARGIN = { top: 25, right: 25, bottom: 100, left: 100 };
 
@@ -19,23 +22,6 @@ interface AxisBottomProps {
   scale: ScaleBand<string>;
   transform: string;
 };
-
-interface XAxisTitleProps {
-  height: number;
-  width: number;
-  text: string;
-};
-
-interface YAxisTitleProps {
-  height: number;
-  text: string;
-};
-
-interface TitleProps {
-  height: number;
-  width: number;
-  text: string;
-}
 
 interface AxisLeftProps {
   scale: ScaleLinear<number, number, never>;
@@ -60,58 +46,6 @@ function AxisBottom({ scale, transform }: AxisBottomProps) {
   return <g ref={ref} transform={transform} />;
 };
 
-function Title({ height, width, text }: TitleProps) {
-  const ref = useRef<SVGGElement>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      select(ref.current)
-        .append("text")
-        .attr("x", width / 2)
-        .attr("y", (height / 15) - 35)
-        .attr("text-anchor", "middle")
-        .text(text);
-    }
-  }, [ref.current]);
-
-  return <g ref={ref} />;
-};
-
-function XAxisTitle({ height, width, text }: XAxisTitleProps) {
-  const ref = useRef<SVGGElement>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      select(ref.current)
-        .append("text")
-        .attr("x", width / 2)
-        .attr("y", height + 40)
-        .attr("text-anchor", "middle")
-        .text(text);
-    }
-  }, [ref.current]);
-
-  return <g ref={ref} />;
-};
-
-function YAxisTitle({height, text }: YAxisTitleProps) {
-  const ref = useRef<SVGGElement>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      select(ref.current)
-        .append("text")
-        .attr("x", - height / 2)
-        .attr("y", -60)
-        .attr("transform", "rotate(-90)")
-        .attr("text-anchor", "middle")
-        .text(text);
-    }
-  }, [ref.current]);
-
-  return <g ref={ref} />;
-};
-
 function AxisLeft({ scale }: AxisLeftProps) {
   const ref = useRef<SVGGElement>(null);
 
@@ -134,7 +68,7 @@ function Bars({ data, height, scaleX, scaleY }: BarsProps) {
           y={scaleY(value)}
           width={scaleX.bandwidth()}
           height={height - scaleY(value)}
-          fill="teal"
+          fill= {name == "Cars" ? "#FF0000" : name == "Bus" ? "#FFA500" : name == "Trains" ? "#272B2E" : name == "Light Rail" ? "#C4A484" : name == "Subway" ? "#7B5343" : "#FFFFF" }
         />
       ))}
     </>
@@ -164,7 +98,7 @@ const Barplot = ({ data }: BarplotProps) => {
         <Title height={height} width={width} text="Yearly CO2(g) Emissions From Each Mode of Transportation" />
         <AxisBottom scale={scaleX} transform={`translate(0, ${height})`} />
         <XAxisTitle height={height} width={width} text="Modes of Transportation" />
-        <YAxisTitle height={height} text="Total Yearly Emission of CO2 (g)" />
+        <YAxisTitle height={height} width={-60} text="Total Yearly Emission of CO2 (kg)" />
         <AxisLeft scale={scaleY} />
         <Bars data={data} height={height} scaleX={scaleX} scaleY={scaleY} />
       </g>

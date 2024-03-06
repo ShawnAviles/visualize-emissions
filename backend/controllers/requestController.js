@@ -43,26 +43,68 @@ async function getMetrics(zipCodesAndTable) {
     {name: "Trains", value: 0},
     {name: "Light Rail", value: 0},
     {name: "Subway", value: 0}
-  ]
+  ];
+  let zipEmissions = [];
+  let top5Zips = [];
   for (let zip in formattedMetrics) {
-    if (formattedMetrics[zip]?.DRIVE) {
-      emissions[0].value = (formattedMetrics[zip].DRIVE.totalVehicleMiles / carPMPG) * 10180 * formattedMetrics[zip].DRIVE.commutesPerWeek * 52;
+    let zipEmission = {name: zip, value: 0};
+    for (let transportation in formattedMetrics[zip]) {
+      if(zip != "07030") {
+        zipEmission.value = Math.round(formattedMetrics[zip][transportation].totalVehicleMiles * 100) / 100;
+      }
+      if (transportation == "DRIVE") {
+        emissions[0].value = (formattedMetrics[zip][transportation].totalVehicleMiles / carPMPG) * 8887/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+      }
+      if (transportation == "BUS") {
+        emissions[1].value += (formattedMetrics[zip][transportation].totalVehicleMiles / busPMPG) * 10180/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+      }
+      if (transportation == "TRAIN") {
+        emissions[2].value += (formattedMetrics[zip][transportation].totalVehicleMiles / trainPMPG) * 10180/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+      }
+      if (transportation == "LIGHT_RAIL") {
+        emissions[3].value += (formattedMetrics[zip][transportation].totalVehicleMiles / lightPMPG) * 8887/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+      }
+      if (transportation == "SUBWAY") {
+        emissions[4].value += (formattedMetrics[zip][transportation].totalVehicleMiles / subwayPMPG) * 8887/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+      }
     }
-    if (formattedMetrics[zip]?.BUS) {
-      emissions[1].value += (formattedMetrics[zip].BUS.totalVehicleMiles / busPMPG) * 10180 * formattedMetrics[zip].BUS.commutesPerWeek * 52;
-    }
-    if (formattedMetrics[zip]?.TRAIN) {
-      emissions[2].value += (formattedMetrics[zip].TRAIN.totalVehicleMiles / trainPMPG) * 10180 * formattedMetrics[zip].TRAIN.commutesPerWeek * 52;
-    }
-    if (formattedMetrics[zip]?.LIGHT_RAIL) {
-      emissions[3].value += (formattedMetrics[zip].LIGHT_RAIL.totalVehicleMiles / lightPMPG) * 10180 * formattedMetrics[zip].LIGHT_RAIL.commutesPerWeek * 52;
-    }
-    if (formattedMetrics[zip]?.SUBWAY) {
-      emissions[4].value += (formattedMetrics[zip].SUBWAY.totalVehicleMiles / subwayPMPG) * 10180 * formattedMetrics[zip].SUBWAY.commutesPerWeek * 52;
+    zipEmissions.push(zipEmission);
+  }
+  emissions = emissions.filter(transportation => transportation.value != 0);
+  emissions.forEach(transportation => transportation.value = Math.round(transportation.value * 100) / 100);
+  zipEmissions = zipEmissions.sort((a, b) => b.value - a.value).slice(0, 5);
+  top5Zips = zipEmissions.map(zip => zip.name);
+
+  let violinData = [];
+  for (let zip in formattedMetrics) {
+    if(zip != "07030") {
+      for(let transportation in formattedMetrics[zip]) {
+        if (top5Zips.includes(zip)) {
+          let calculatedValue;
+          if (transportation == "DRIVE") {
+            calculatedValue = (formattedMetrics[zip][transportation].totalVehicleMiles / carPMPG) * 8887/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+          }
+          if (transportation == "BUS") {
+            calculatedValue = (formattedMetrics[zip][transportation].totalVehicleMiles / busPMPG) * 10180/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+          }
+          if (transportation == "TRAIN") {
+            calculatedValue = (formattedMetrics[zip][transportation].totalVehicleMiles / trainPMPG) * 10180/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+          }
+          if (transportation == "LIGHT_RAIL") {
+            calculatedValue = (formattedMetrics[zip][transportation].totalVehicleMiles / lightPMPG) * 8887/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+          }
+          if (transportation == "SUBWAY") {
+            calculatedValue = (formattedMetrics[zip][transportation].totalVehicleMiles / subwayPMPG) * 8887/1000 * formattedMetrics[zip][transportation].commutesPerWeek * 52;
+          }
+          violinData.push({
+            name: zip,
+            value: Math.round(calculatedValue  * 100) / 100,
+          });
+        }
+      }
     }
   }
-
-	return emissions;
+	return [emissions, violinData];
 }
 
 export { getRoutes, getMetrics };

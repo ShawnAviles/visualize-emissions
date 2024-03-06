@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { extractUniqueZipCodesAndModes } from '../utility/helper';
 
 function useMetrics(url: string, uploadedData: any) {
-  const [metrics, setMetrics] = useState({});
+  const [metrics, setMetrics] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
