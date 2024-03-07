@@ -9,32 +9,29 @@ function UploadWrapper({ setUploadedData }: { setUploadedData: Function }) {
         setUploadedData(results);
       }}
     >
-      {({ getRootProps, acceptedFile, ProgressBar, getRemoveFileProps }: any) => (
+      {({ getRootProps, acceptedFile, getRemoveFileProps }: any) => (
         <>
           <div className="flex flex-col">
             <div className="flex flex-row justify-between items-center">
-              <button
-                type="button"
-                className="block font-sm p-2 bg-blue-400 text-white rounded-bl-md rounded-tl-md border-y-2 border-l-2"
+              <button 
+                type="button" 
+                className="btn btn-info btn-sm btn-outline"
                 {...getRootProps()}
               >
                 Upload
               </button>
-              <div className="block p-2 w-full text-sm text-gray-900 bg-gray-100 border-y-2">
+              <div className="block p-2 w-full text-sm text-gray-900">
                 {(acceptedFile && acceptedFile.name) || 'No file selected'}
               </div>
               <button
-                className="p-2 text-red-900 font-lg bg-gray-100 rounded-br-md rounded-tr-md hover:bg-red-300 hover:text-red-900 cursor-pointer border-y-2 border-r-2"
+                className="p-2 text-red-900 font-lg rounded-md hover:bg-red-300 hover:text-red-900 cursor-pointer"
                 {...getRemoveFileProps()}
               >
-                x
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
           </div>
-          <p className="mt-1 text-sm text-gray-500" id="file_input_help">
-            CSV, XLSX
-          </p>
-          <ProgressBar className="bg-green-500" />
+          {/* <ProgressBar className="bg-green-500" /> */}
         </>
       )}
     </CSVReader>
