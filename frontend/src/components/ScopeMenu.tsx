@@ -13,8 +13,6 @@ const ScopeMenu = ({
   setModeFilter: Function;
 }) => {
   const [selected, setSelected] = useState('all');
-  const [min, setMin] = useState('');
-  const [max, setMax] = useState('');
 
   const handleModeSelection = (mode: string) => {
     setSelected(mode);
@@ -33,42 +31,30 @@ const ScopeMenu = ({
   ];
 
   return (
-    <div className="w-80 h-76 left-2 top-2 p-4 flex-col bg-slate-50 rounded-xl absolute">
-      <div className="mb-4 font-bold">Select Excel File</div>
-      <UploadWrapper setUploadedData={setUploadedData} />
+    <div className="w-96 h-76 z-10 left-2 top-2 p-4 flex-col bg-slate-50 rounded-xl absolute border-4 border-slate-400 blur-none">
+      <div className="mb-1 flex justify-between font-bold text-md">
+        Select Data File
+        <span className="text-sm text-gray-500 font-light">
+          csv, xlsx
+        </span>
+      </div>
+      <UploadWrapper setUploadedData={setUploadedData}/>
       {loading && !error && (
-        <div className="italics text-purple-500">Creating Visualization...</div>
+        <>
+          <div className="flex justify-center items-center italics text-primary text-[11pt]">
+            <span className="loading loading-spinner loading-md text-primary mr-2"></span>
+            Creating Visualization...
+          </div>
+        </>
       )}
       {error && (
         <div className="font-bold text-red-800">
           Error: There was an error uploading your file
         </div>
       )}
-      <div>
-        <div className="font-bold mb-4">
-          Driving time range is {min} to {max} minutes.
-        </div>
-        <div className="ml-4 mb-4">
-          <div className="font-bold">Choose a minimum duration</div>
-          <input
-            type="range"
-            value={min}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMin(e.target.value)}
-          />
-        </div>
-        <div className="ml-4 mb-4">
-          <div className="font-bold">Choose a maximum duration</div>
-          <input
-            type="range"
-            value={max}
-            min={min}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMax(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="font-bold mb-2">Choose a travel mode:</div>
+      <div className="mt-2 mb-1 font-bold text-md">Choose a travel mode:</div>
       <select
-        className="p-2 mb-4"
+        className="select select-bordered select-sm w-full"
         value={selected}
         onChange={(e) => handleModeSelection(e.target.value)}
       >

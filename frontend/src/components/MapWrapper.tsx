@@ -118,40 +118,59 @@ function MenuWrapper() {
 
   return (
     <>
-      <Map
-        mapboxAccessToken={mapboxToken}
-        initialViewState={{
-          longitude: StevensLongitude,
-          latitude: StevensLatitude,
-          zoom: 10
-        }}
-        style={{ width: '100vw', height: '80vh' }}
-        mapStyle="mapbox://styles/mapbox/light-v11"
-      >
-        <ScopeMenu
-          setUploadedData={setUploadedData}
-          loading={geoJsonLoading}
-          error={geoJsonError}
-          setModeFilter={setModeFilter} // Pass the setModeFilter function to ScopeMenu
-        />
-        <Marker
-          longitude={StevensLongitude}
-          latitude={StevensLatitude}
-          color="#b30538"
-          anchor="center"
-        />
-        <ScaleControl unit="imperial" />
-        {sources.length > 0 && sources}
-      </Map>
-      {metrics[0] && <Barplot data={metrics[0] as { name: string; value: number }[]} />}
-      {metrics[0] && <PieChart data={metrics[0] as { name: string; value: number }[]} />}
-      {metrics[1] && (
-        <ViolinPlot
-          data={metrics[1] as { name: string; value: number }[]}
-          width={800}
-          height={500}
-        />
-      )}
+      <div className="h-[80vh] w-screen flex justify-center items-center px-16">
+        <div className="h-full w-full rounded-lg border-sky-400 bg-gradient-to-r to-emerald-600 from-sky-400 p-1">
+          <div className="relative h-full w-full">
+            <ScopeMenu
+              setUploadedData={setUploadedData}
+              loading={geoJsonLoading}
+              error={geoJsonError}
+              setModeFilter={setModeFilter} // Pass the setModeFilter function to ScopeMenu
+            />
+            <Map
+              mapboxAccessToken={mapboxToken}
+              initialViewState={{
+                longitude: StevensLongitude,
+                latitude: StevensLatitude,
+                zoom: 10
+              }}
+              style={{ width: '100%', height: '100%', filter: geoJsonLoading ? 'blur(4px)' : 'none'}}
+              mapStyle="mapbox://styles/mapbox/light-v11"
+            >
+              <Marker
+                longitude={StevensLongitude}
+                latitude={StevensLatitude}
+                color="#b30538"
+                anchor="center"
+              />
+              <ScaleControl unit="imperial" />
+              {sources.length > 0 && sources}
+            </Map>
+          </div>
+        </div>
+      </div>
+      
+      {metricsLoading  ? 
+        <>
+          <div className="p-8 flex flex-col justify-center items-center italics text-primary text-[11pt]">
+            Loading Metrics...
+            <span className="loading loading-spinner loading-lg mt-2"></span>
+          </div>
+        </>
+        :
+        <>
+          {metrics[0] && <Barplot data={metrics[0] as { name: string; value: number }[]} />}
+          {metrics[0] && <PieChart data={metrics[0] as { name: string; value: number }[]} />}
+          {metrics[1] && (
+            <ViolinPlot
+              data={metrics[1] as { name: string; value: number }[]}
+              width={800}
+              height={500}
+            />
+          )}
+        </>
+      }
+      
     </>
   );
 }
