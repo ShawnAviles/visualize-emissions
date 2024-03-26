@@ -1,0 +1,729 @@
+{
+	"10023": {
+			"modeOfTransport": [
+					"Personal Bicycle",
+					"NJ TRANSIT bus"
+			]
+	},
+	"10025": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"10027": {
+			"modeOfTransport": [
+					"MTA subway"
+			]
+	},
+	"10033": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"10040": {
+			"modeOfTransport": [
+					"MTA subway"
+			]
+	},
+	"10282": {
+			"modeOfTransport": [
+					"Ferry"
+			]
+	},
+	"10301": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"10304": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"10305": {
+			"modeOfTransport": [
+					"MTA subway"
+			]
+	},
+	"10308": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"10467": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)"
+			]
+	},
+	"10708": {
+			"modeOfTransport": [
+					"NJ TRANSIT bus"
+			]
+	},
+	"10916": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"10950": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"10965": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"10983": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"11106": {
+			"modeOfTransport": [
+					"MTA subway"
+			]
+	},
+	"11210": {
+			"modeOfTransport": [
+					"MTA subway"
+			]
+	},
+	"11218": {
+			"modeOfTransport": [
+					"MTA subway"
+			]
+	},
+	"11222": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"11226": {
+			"modeOfTransport": [
+					"NJ TRANSIT bus"
+			]
+	},
+	"11235": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"18301": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"19119": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"21804": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07030": {
+			"modeOfTransport": [
+					"Walking (other than to/from your vehicle)",
+					"Citi Bike"
+			]
+	},
+	"07205": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)",
+					"Motorcycle/moped"
+			]
+	},
+	"07960": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07307": {
+			"modeOfTransport": [
+					"Other",
+					"Motorcycle/moped",
+					"Walking (other than to/from your vehicle)",
+					"Single-occupancy hybrid or zero-emissions vehicle",
+					"Carpool (gas vehicle)",
+					"Stevens Shuttle",
+					"Personal Bicycle",
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT bus"
+			]
+	},
+	"07110": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)",
+					"Single-occupancy gas vehicle",
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07047": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Other",
+					"NJ TRANSIT bus"
+			]
+	},
+	"07458": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07726": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07052": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle",
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT train"
+			]
+	},
+	"07738": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07024": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07304": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT light rail",
+					"Ride hail/taxi"
+			]
+	},
+	"07666": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07727": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07002": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)",
+					"Single-occupancy hybrid or zero-emissions vehicle",
+					"Single-occupancy gas vehicle",
+					"Other",
+					"Carpool (hybrid or zero-emissions vehicle)",
+					"NJ TRANSIT light rail"
+			]
+	},
+	"08540": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07310": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Walking (other than to/from your vehicle)"
+			]
+	},
+	"08204": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07670": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Carpool (gas vehicle)"
+			]
+	},
+	"07721": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07306": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT bus",
+					"PATH",
+					"Personal Bicycle"
+			]
+	},
+	"07093": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT bus"
+			]
+	},
+	"07094": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07452": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07081": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07410": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Carpool (gas vehicle)",
+					"NJ TRANSIT train"
+			]
+	},
+	"07029": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07059": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)",
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07719": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07044": {
+			"modeOfTransport": [
+					"Other"
+			]
+	},
+	"08807": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"08816": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07645": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07305": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Carpool (gas vehicle)"
+			]
+	},
+	"07470": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07302": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Single-occupancy hybrid or zero-emissions vehicle",
+					"PATH",
+					"NJ TRANSIT light rail"
+			]
+	},
+	"08854": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07407": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07086": {
+			"modeOfTransport": [
+					"NJ TRANSIT bus",
+					"Single-occupancy gas vehicle",
+					"Carpool (gas vehicle)",
+					"NJ TRANSIT light rail",
+					"Walking (other than to/from your vehicle)"
+			]
+	},
+	"08638": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07006": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07850": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07070": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT train"
+			]
+	},
+	"08889": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07026": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle",
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07057": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)",
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07663": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)",
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"08820": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07661": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07675": {
+			"modeOfTransport": [
+					"NJ TRANSIT train",
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07003": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT train"
+			]
+	},
+	"07640": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07032": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07803": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07039": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07461": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"08846": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07071": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT train"
+			]
+	},
+	"08550": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)"
+			]
+	},
+	"07644": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07933": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07045": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07936": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07733": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"08859": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)"
+			]
+	},
+	"08869": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07040": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07920": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07747": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07604": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07649": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07981": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"08904": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT train"
+			]
+	},
+	"07712": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07042": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT train"
+			]
+	},
+	"07087": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT bus"
+			]
+	},
+	"07054": {
+			"modeOfTransport": [
+					"Single-occupancy hybrid or zero-emissions vehicle"
+			]
+	},
+	"07401": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle",
+					"NJ TRANSIT train"
+			]
+	},
+	"07074": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)"
+			]
+	},
+	"07079": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07009": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07676": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07083": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)"
+			]
+	},
+	"07940": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"08831": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07031": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07103": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"08857": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)"
+			]
+	},
+	"07606": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"08835": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"08844": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07016": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07028": {
+			"modeOfTransport": [
+					"NJ TRANSIT train",
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07111": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07656": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07946": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07423": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07013": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07023": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07601": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"08822": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07075": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07508": {
+			"modeOfTransport": [
+					"Carpool (gas vehicle)"
+			]
+	},
+	"07010": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07840": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07073": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	},
+	"07005": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07011": {
+			"modeOfTransport": [
+					"NJ TRANSIT train"
+			]
+	},
+	"07109": {
+			"modeOfTransport": [
+					"Single-occupancy gas vehicle"
+			]
+	}
+}

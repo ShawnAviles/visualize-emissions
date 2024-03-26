@@ -41,8 +41,11 @@ type TransportationModes =
 const extractUniqueZipCodesAndModes = (table: string[][]) => {
   let resultZipCodesWithModes: extractedData = {};
 
-  const zipCodeColumnIndex: number = table[0].indexOf('ZIP Code');
-  const modeColumnIndex: number = table[0].indexOf('Mode of Transport');
+  const zipCodeColumnTitle: string | undefined = table[0].find(el => el.toLowerCase().includes("zipcode") || el.toLowerCase().includes("zip code"));
+  const zipCodeColumnIndex: number | undefined = zipCodeColumnTitle ? table[0].indexOf(zipCodeColumnTitle) : undefined;
+  
+  const modeColumnTitle: string | undefined = table[0].find(el => el.toLowerCase().includes("primary commute mode") || el.toLowerCase().includes("mode of transport"));
+  const modeColumnIndex: number | undefined = modeColumnTitle ? table[0].indexOf(modeColumnTitle) : undefined;
 
   // Error Handling
   if (zipCodeColumnIndex === undefined) {
@@ -62,6 +65,9 @@ const extractUniqueZipCodesAndModes = (table: string[][]) => {
   table.map((row: string[]) => {
     const zipCode: string = row[zipCodeColumnIndex];
     const modeOfTransport: string = row[modeColumnIndex];
+
+    if (!zipCode || !modeOfTransport) return null;
+    if (zipCode.length !== 5) return null;
 
     // if exists
     if (resultZipCodesWithModes[zipCode]) {
@@ -163,44 +169,6 @@ const generateRouteLayer = (finalRoutePolyline: any, opt: layerOptions) => {
   }
 
   return finalLayers;
-};
-
-/**
- * Returns the mode of transport that is strictly used our the API call: "DRIVE", "TRAIN", "SUBWAY", "LIGHT_RAIL", "BUS"
- *
- * @param {string} mode - mode of transport
- * @returns {string} "DRIVE", "TRAIN", "SUBWAY", "LIGHT_RAIL", "BUS", "WALK", "BICYCLE"
- */
-const getModeOfTransportation = (mode: string): TransportationModes => {
-  mode = mode.toLowerCase();
-
-  // set of different modes
-  const driveMode = new Set(['car', 'rideshare', 'stevens shuttle', 'shuttle']);
-  const walkMode = new Set(['walk']);
-  const bikeMode = new Set(['bike', 'bicycle', 'scooter', 'citibike']);
-  const trainMode = new Set(['nj transit', 'path']);
-  const subwayMode = new Set(['subway']);
-  const lightRailMode = new Set(['light rail']);
-  const busMode = new Set(['bus', 'nj transit bus']);
-
-  if (driveMode.has(mode)) {
-    return 'DRIVE';
-  } else if (trainMode.has(mode)) {
-    return 'TRAIN';
-  } else if (subwayMode.has(mode)) {
-    return 'SUBWAY';
-  } else if (lightRailMode.has(mode)) {
-    return 'LIGHT_RAIL';
-  } else if (busMode.has(mode)) {
-    return 'BUS';
-  } else if (walkMode.has(mode)) {
-    return 'WALK';
-  } else if (bikeMode.has(mode)) {
-    return 'BICYCLE';
-  } else {
-    // default to drive
-    return 'DRIVE';
-  }
 };
 
 // Data that may be helpful later for grouping data in graphs and informational purposes
@@ -332,5 +300,4 @@ export {
   extractUniqueZipCodesAndModes,
   generateRouteLayer,
   cityZipCodes,
-  getModeOfTransportation
 };
