@@ -286,13 +286,16 @@ function getModeOfTransportation(mode) {
 	mode = mode.toLowerCase();
 
 	// set of different modes
-	const driveMode = new Set(["car", "rideshare", "stevens shuttle", "shuttle"]);
-	const walkMode = new Set(["walk"]);
-	const bikeMode = new Set(["bike", "bicycle", "scooter", "citibike"]);
-	const trainMode = new Set(["nj transit", "path"]);
-	const subwayMode = new Set(["subway"]);
-	const lightRailMode = new Set(["light rail"]);
+	const driveMode = new Set(["car", "rideshare", "carpool (gas vehicle)", "stevens shuttle", "shuttle", "single-occupancy gas vehicle","ride hail/taxi", "single-occupancy hybrid or zero-emissions vehicle", "carpool (hybrid or zero-emissions vehicle)", "other"]); // assuming "other" means drive
+	const walkMode = new Set(["walk", "walking (other than to/from your vehicle)", "walking"]);
+	const bikeMode = new Set(["bike", "bicycle", "scooter", "citibike", "citi bike", "personal bicycle", "motorcycle/moped", "motorbike", "moped"]);
+	const trainMode = new Set(["nj transit", "path", "nj transit train"]);
+	const subwayMode = new Set(["subway", "mta subway"]);
+	const lightRailMode = new Set(["light rail", "nj transit light rail"]);
 	const busMode = new Set(["bus", "nj transit bus"]);
+
+	// TODO: will need to be added in the future
+	const ferryMode = new Set(["ferry", "staten island ferry", "ferry boat", "ferry service"]);
 
 	if (driveMode.has(mode)) {
 		return "DRIVE";
@@ -468,9 +471,14 @@ function getVehicleMetersTraveledFromSteps(steps) {
 const extractCommutesPerWeek = (table) => {
 	let resultCommuteCountObj = {};
 
-	const zipCodeColumnIndex = table[0].indexOf("ZIP Code");
-	const modeColumnIndex = table[0].indexOf("Mode of Transport");
-	const peopleColumnIndex = table[0].indexOf("Frequency of Commuting Days");
+	const zipCodeColumnTitle = table[0].find(el => el.toLowerCase().includes("zipcode") || el.toLowerCase().includes("zip code"));
+  const zipCodeColumnIndex = zipCodeColumnTitle ? table[0].indexOf(zipCodeColumnTitle) : undefined;
+  
+  const modeColumnTitle = table[0].find(el => el.toLowerCase().includes("primary commute mode") || el.toLowerCase().includes("mode of transport"));
+  const modeColumnIndex = modeColumnTitle ? table[0].indexOf(modeColumnTitle) : undefined;
+
+	const peopleColumnTitle = table[0].find(el => el.toLowerCase().includes("frequency of commuting days") || el.toLowerCase().includes("days a week"));
+	const peopleColumnIndex = peopleColumnTitle ? table[0].indexOf(peopleColumnTitle) : undefined;
 
 	// Error Handling
 	if (zipCodeColumnIndex === undefined) {

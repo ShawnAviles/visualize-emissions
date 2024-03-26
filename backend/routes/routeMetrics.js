@@ -5,6 +5,10 @@ import { getMetrics } from "../controllers/requestController.js";
 router.route("/").post(async (req, res) => {
 	const zipCodesAndTable = req.body;
 	const output = await getMetrics(zipCodesAndTable);
+	// const output = {
+	// 	error: "This route is closed rn",
+	// 	input: zipCodesAndTable,
+	// };
 	res.send({
 		response: "SUCCESS",
 		data: output,
