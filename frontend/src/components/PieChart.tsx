@@ -58,7 +58,7 @@ const PieChart = ({data} : PieChartProps ) => {
     const isRightLabel = inflexionPoint[0] > 0;
     const labelPosX = inflexionPoint[0] + 50 * (isRightLabel ? 1 : -1);
     const textAnchor = isRightLabel ? "start" : "end";
-    const label = grp.data.name + " (" + (Math.round((grp.value/total) * 100) / 100 * 100) +  "% )";
+    const label = grp.data.name + " (" + ((Math.round((grp.value/total) * 100) / 100 * 100)).toFixed(1) +  "% )";
 
     return (
       <g key={i}>

@@ -1,0 +1,49 @@
+{
+	"response": "SUCCESS",
+	"data": [
+			[
+					{
+							"name": "Cars",
+							"value": 1537.43
+					},
+					{
+							"name": "Bus",
+							"value": 308
+					},
+					{
+							"name": "Trains",
+							"value": 53.91
+					},
+					{
+							"name": "Light Rail",
+							"value": 35.7
+					},
+					{
+							"name": "Subway",
+							"value": 21.82
+					}
+			],
+			[
+					{
+							"name": "10956",
+							"value": 4.97
+					},
+					{
+							"name": "07082",
+							"value": 14.44
+					},
+					{
+							"name": "08816",
+							"value": 3331.22
+					},
+					{
+							"name": "07801",
+							"value": 2873.42
+					},
+					{
+							"name": "07740",
+							"value": 15.84
+					}
+			]
+	]
+}

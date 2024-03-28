@@ -8,7 +8,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({limit: '200mb'}));
 
 app.use("/health", health);
 app.use("/routes", routes);

@@ -1,0 +1,145 @@
+{
+	"10024": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"10026": {
+			"modeOfTransport": [
+					"Ferry"
+			]
+	},
+	"10028": {
+			"modeOfTransport": [
+					"Ferry"
+			]
+	},
+	"10307": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"10312": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"10461": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"10463": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"10465": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"10605": {
+			"modeOfTransport": [
+					"Car"
+			]
+	},
+	"10703": {
+			"modeOfTransport": [
+					"Car"
+			]
+	},
+	"11102": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"11109": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"11201": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"11206": {
+			"modeOfTransport": [
+					"PATH"
+			]
+	},
+	"11358": {
+			"modeOfTransport": [
+					"Bus"
+			]
+	},
+	"07602": {
+			"modeOfTransport": [
+					"NJ Transit"
+			]
+	},
+	"07631": {
+			"modeOfTransport": [
+					"NJ Transit"
+			]
+	},
+	"07103": {
+			"modeOfTransport": [
+					"NJ Transit Bus"
+			]
+	},
+	"07102": {
+			"modeOfTransport": [
+					"NJ Transit Bus"
+			]
+	},
+	"07042": {
+			"modeOfTransport": [
+					"Car"
+			]
+	},
+	"07043": {
+			"modeOfTransport": [
+					"Car"
+			]
+	},
+	"07302": {
+			"modeOfTransport": [
+					"Rideshare"
+			]
+	},
+	"07306": {
+			"modeOfTransport": [
+					"Light Rail"
+			]
+	},
+	"07030": {
+			"modeOfTransport": [
+					"Walking",
+					"CitiBike",
+					"Stevens Shuttle"
+			]
+	},
+	"08902": {
+			"modeOfTransport": [
+					"Car"
+			]
+	},
+	"08820": {
+			"modeOfTransport": [
+					"NJ Transit"
+			]
+	},
+	"07054": {
+			"modeOfTransport": [
+					"NJ Transit"
+			]
+	},
+	"07086": {
+			"modeOfTransport": [
+					"Walking",
+					"Car"
+			]
+	}
+}
