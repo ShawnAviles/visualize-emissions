@@ -1,3 +1,6 @@
+// ignore types for this file due to unresolved d3 types
+// @ts-nocheck
+
 import { useMemo } from "react";
 import * as d3 from "d3";
 import Title from "./Title";
