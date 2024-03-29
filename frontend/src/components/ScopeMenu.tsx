@@ -5,12 +5,14 @@ const ScopeMenu = ({
   setUploadedData,
   loading,
   error = null,
-  setModeFilter
+  setModeFilter,
+  availableModes
 }: {
   setUploadedData: Function;
   loading: boolean;
   error: any;
   setModeFilter: Function;
+  availableModes: string[];
 }) => {
   const [selected, setSelected] = useState('all');
 
@@ -19,26 +21,13 @@ const ScopeMenu = ({
     setModeFilter(mode);
   };
 
-  const transportationModes = [
-    'all',
-    'DRIVE',
-    'TRAIN',
-    'SUBWAY',
-    'LIGHT_RAIL',
-    'BUS',
-    'WALK',
-    'BICYCLE'
-  ];
-
   return (
     <div className="w-96 h-76 z-10 left-2 top-2 p-4 flex-col bg-slate-50 rounded-xl absolute border-4 border-slate-400 blur-none">
       <div className="mb-1 flex justify-between font-bold text-md">
         Select Data File
-        <span className="text-sm text-gray-500 font-light">
-          csv, xlsx
-        </span>
+        <span className="text-sm text-gray-500 font-light">csv, xlsx</span>
       </div>
-      <UploadWrapper setUploadedData={setUploadedData}/>
+      <UploadWrapper setUploadedData={setUploadedData} />
       {loading && !error && (
         <>
           <div className="flex justify-center items-center italics text-primary text-[11pt]">
@@ -58,9 +47,24 @@ const ScopeMenu = ({
         value={selected}
         onChange={(e) => handleModeSelection(e.target.value)}
       >
-        {transportationModes.map((mode) => (
+        <option value="all">Show All</option>
+        {availableModes.map((mode) => (
           <option key={mode} value={mode}>
-            {mode}
+            {mode === 'DRIVE'
+              ? 'Car'
+              : mode === 'TRAIN'
+              ? 'Train'
+              : mode === 'SUBWAY'
+              ? 'Subway'
+              : mode === 'LIGHT_RAIL'
+              ? 'Light Rail'
+              : mode === 'BUS'
+              ? 'Bus'
+              : mode === 'WALK'
+              ? 'Walk'
+              : mode === 'BICYCLE'
+              ? 'Bicycle'
+              : mode}
           </option>
         ))}
       </select>

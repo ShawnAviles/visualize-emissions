@@ -32,7 +32,8 @@ function MenuWrapper() {
   const StevensLatitude: number = 40.74509007605575;
   const [uploadedData, setUploadedData] = useState({ data: [], errors: [], meta: [] });
   const [sources, setSources] = useState([] as React.ReactElement[]);
-    const [modeFilter, setModeFilter] = useState('all');
+  const [modeFilter, setModeFilter] = useState('all');
+  const [availableModes, setAvailableModes] = useState([] as string[]);
 
   const {
     loading: geoJsonLoading,
@@ -43,7 +44,7 @@ function MenuWrapper() {
   const {
     loading: metricsLoading,
     error: metricsError,
-    metrics,
+    metrics
   } = useMetrics('http://localhost:3000/metrics', uploadedData);
 
   // @h-pyo
@@ -54,6 +55,13 @@ function MenuWrapper() {
     console.log('loadingState for metrics', metricsLoading);
     console.log('errorState for metrics', metricsError);
   }, [metrics]);
+
+  useEffect(() => {
+    if (Object.keys(liveRoutesObject).length > 0) {
+      const modes = Object.keys(liveRoutesObject);
+      setAvailableModes(modes);
+    }
+  }, [liveRoutesObject]);
 
   useEffect(() => {
     const renderPolyline = () => {
@@ -126,6 +134,7 @@ function MenuWrapper() {
               loading={geoJsonLoading}
               error={geoJsonError}
               setModeFilter={setModeFilter} // Pass the setModeFilter function to ScopeMenu
+              availableModes={availableModes} // Pass availableModes to ScopeMenu
             />
             <Map
               mapboxAccessToken={mapboxToken}
@@ -134,7 +143,11 @@ function MenuWrapper() {
                 latitude: StevensLatitude,
                 zoom: 10
               }}
-              style={{ width: '100%', height: '100%', filter: geoJsonLoading ? 'blur(4px)' : 'none'}}
+              style={{
+                width: '100%',
+                height: '100%',
+                filter: geoJsonLoading ? 'blur(4px)' : 'none'
+              }}
               mapStyle="mapbox://styles/mapbox/light-v11"
             >
               <Marker
@@ -149,18 +162,22 @@ function MenuWrapper() {
           </div>
         </div>
       </div>
-      
-      {metricsLoading  ? 
+
+      {metricsLoading ? (
         <>
           <div className="p-8 flex flex-col justify-center items-center italics text-primary text-[11pt]">
             Loading Metrics...
             <span className="loading loading-spinner loading-lg mt-2"></span>
           </div>
         </>
-        :
+      ) : (
         <>
-          {metrics[0] && <Barplot data={metrics[0] as { name: string; value: number }[]} />}
-          {metrics[0] && <PieChart data={metrics[0] as { name: string; value: number }[]} />}
+          {metrics[0] && (
+            <Barplot data={metrics[0] as { name: string; value: number }[]} />
+          )}
+          {metrics[0] && (
+            <PieChart data={metrics[0] as { name: string; value: number }[]} />
+          )}
           {metrics[1] && (
             <ViolinPlot
               data={metrics[1] as { name: string; value: number }[]}
@@ -169,8 +186,7 @@ function MenuWrapper() {
             />
           )}
         </>
-      }
-      
+      )}
     </>
   );
 }
