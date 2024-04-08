@@ -4,8 +4,8 @@ import type { LayerProps } from 'react-map-gl';
 
 import { useState, useEffect } from 'react';
 import ScopeMenu from './ScopeMenu';
-import routes from '../utility/sampleData/routePolylines/simple_routes_5.json';
-import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layers.json';
+// import routes from '../utility/sampleData/routePolylines/simple_routes_5.json';
+// import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layers.json';
 import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer } from '../utility/helper';
@@ -14,6 +14,9 @@ import {  BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 // Used this to test the liveRoutes data as it is saved locally, atp it is just an extra sample data file:
 // import liveRoutesStatic from '../utility/sampleData/routePolylines/routes_gcp_28.json';
 // import liveRoutesLayersStatic from '../utility/sampleData/routeLayers/routes_gcp_28_layers.json';
+
+import studentDataset from '../utility/sampleData/api/routes/sample_students_74/output.json';
+import employeeDataset from '../utility/sampleData/api/routes/sample_employee_258/output.json';
 
 type TransportationModes =
   | 'DRIVE'
@@ -31,6 +34,11 @@ function MenuWrapper() {
   const [uploadedData, setUploadedData] = useState({ data: [], errors: [], meta: [] });
   const [sources, setSources] = useState([] as React.ReactElement[]);
   const [modeFilter, setModeFilter] = useState('all');
+  const [availableModes, setAvailableModes] = useState([] as string[]);
+  const [datasetFilter, setDatasetFilter] = useState('Student'); // State for dataset filter
+
+  const studentData = studentDataset.data;
+  const employeeData = employeeDataset.data;
   const [metricFilter, setMetricFilter] = useState('none');
   
   // Constants for the charts
@@ -59,7 +67,7 @@ function MenuWrapper() {
   const {
     loading: geoJsonLoading,
     error: geoJsonError,
-    liveRoutesObject
+    // liveRoutesObject
   } = useGeoJson('http://localhost:3000/routes', uploadedData);
 
   const {
@@ -86,39 +94,115 @@ function MenuWrapper() {
     setMetricFilter(metric);
   };
 
+  // useEffect(() => {
+  //   if (Object.keys(liveRoutesObject).length > 0) {
+  //     const modes = Object.keys(liveRoutesObject);
+  //     setAvailableModes(modes);
+  //   }
+  // }, [liveRoutesObject]);
+
+  // useEffect(() => {
+  //   const renderPolyline = () => {
+  //     // conditional render of the polylines based on liveRoutes variable, else render using routesLayers.json
+  //     console.log('start of renderPolyline');
+  //     console.log(liveRoutesObject);
+  //     console.log(liveRoutesObject['DRIVE']);
+  //     if (Object.keys(liveRoutesObject).length === 0) {
+  //       setSources([
+  //         <Source
+  //           id="my-data"
+  //           key="my-data"
+  //           type="geojson"
+  //           data={{
+  //             type: 'FeatureCollection',
+  //             features: routes as Feature<Geometry, GeoJsonProperties>[]
+  //           }}
+  //         >
+  //           {routeLayers.map((layer, index) => (
+  //             <Layer key={index} {...(layer as LayerProps)} />
+  //           ))}
+  //         </Source>
+  //       ]);
+  //       return;
+  //     }
+  //     // create custom layer object based on liveRoutes data, this must be unique for each set of route data uploaded
+  //     const sources: React.ReactElement[] = [];
+  //     const existingModesOfTransport = Object.keys(liveRoutesObject);
+
+  //     for (let mode of existingModesOfTransport) {
+  //       if (modeFilter !== 'all' && modeFilter !== mode) {
+  //         // Skip if modeFilter is set and the current mode is not the selected one
+  //         continue;
+  //       }
+
+  //       let liveRoutes: object[] = liveRoutesObject[mode];
+  //       let liveRoutesLayers = generateRouteLayer(liveRoutes, {
+  //         modeOfTransport: mode as TransportationModes
+  //       });
+
+  //       sources.push(
+  //         <Source
+  //           id={mode}
+  //           key={mode}
+  //           type="geojson"
+  //           data={{
+  //             type: 'FeatureCollection',
+  //             features: liveRoutes as Feature<Geometry, GeoJsonProperties>[]
+  //           }}
+  //           lineMetrics={true}
+  //         >
+  //           {liveRoutesLayers.map((layer, index) => (
+  //             <Layer key={index} {...(layer as LayerProps)} />
+  //           ))}
+  //         </Source>
+  //       );
+  //     }
+  //     // TODO: Remove later
+  //     console.log('CREATED', sources);
+  //     setSources(sources);
+  //   };
+
+  //   renderPolyline();
+  // }, [liveRoutesObject, modeFilter]);
+
   useEffect(() => {
     const renderPolyline = () => {
-      // conditional render of the polylines based on liveRoutes variable, else render using routesLayers.json
-      if (Object.keys(liveRoutesObject).length === 0) {
-        setSources([
-          <Source
-            id="my-data"
-            key="my-data"
-            type="geojson"
-            data={{
-              type: 'FeatureCollection',
-              features: routes as Feature<Geometry, GeoJsonProperties>[]
-            }}
-          >
-            {routeLayers.map((layer, index) => (
-              <Layer key={index} {...(layer as LayerProps)} />
-            ))}
-          </Source>
-        ]);
-        return;
+      let currentData = {};
+      let modes = [];
+      console.log(datasetFilter);
+      if (datasetFilter === 'Student') {
+        currentData = studentData;
+        modes = Object.keys(currentData);
+        setAvailableModes(modes);
+      } else if (datasetFilter === 'Employee') {
+        currentData = employeeData;
+        modes = Object.keys(currentData);
+        setAvailableModes(modes);
+      } else {
+        // Combine data from both datasets
+        modes = [...new Set([...Object.keys(studentData), ...Object.keys(employeeData)])];
+        const combinedData: { [key: string]: object[] } = {}; // Add index signature to allow indexing with a string
+
+        for (let mode of modes) {
+          // Combine routes for each mode
+          combinedData[mode] = [
+            ...(studentData[mode as keyof typeof studentData] || []),
+            ...(employeeData[mode as keyof typeof employeeData] || [])
+          ];
+        }
+        currentData = combinedData;
+        setAvailableModes(modes);
       }
-      // create custom layer object based on liveRoutes data, this must be unique for each set of route data uploaded
       const sources: React.ReactElement[] = [];
-      const existingModesOfTransport = Object.keys(liveRoutesObject);
+      const existingModesOfTransport = Object.keys(currentData);
 
       for (let mode of existingModesOfTransport) {
         if (modeFilter !== 'all' && modeFilter !== mode) {
-          // Skip if modeFilter is set and the current mode is not the selected one
           continue;
         }
 
-        let liveRoutes: object[] = liveRoutesObject[mode];
-        let liveRoutesLayers = generateRouteLayer(liveRoutes, {
+        let currentRoutes: object[] = currentData[mode as keyof typeof currentData];
+        let currentLayers = generateRouteLayer(currentRoutes, {
           modeOfTransport: mode as TransportationModes
         });
 
@@ -129,23 +213,21 @@ function MenuWrapper() {
             type="geojson"
             data={{
               type: 'FeatureCollection',
-              features: liveRoutes as Feature<Geometry, GeoJsonProperties>[]
+              features: currentRoutes as Feature<Geometry, GeoJsonProperties>[]
             }}
             lineMetrics={true}
           >
-            {liveRoutesLayers.map((layer, index) => (
+            {currentLayers.map((layer, index) => (
               <Layer key={index} {...(layer as LayerProps)} />
             ))}
           </Source>
         );
       }
-      // TODO: Remove later
-      console.log('CREATED', sources);
       setSources(sources);
+      console.log(currentData);
     };
-
     renderPolyline();
-  }, [liveRoutesObject, modeFilter]);
+  }, [studentData, modeFilter, datasetFilter, employeeData]);
 
   return (
     <>
@@ -157,6 +239,8 @@ function MenuWrapper() {
               loading={geoJsonLoading}
               error={geoJsonError}
               setModeFilter={setModeFilter} // Pass the setModeFilter function to ScopeMenu
+              availableModes={availableModes} // Pass availableModes to ScopeMenu
+              setDatasetFilter={setDatasetFilter} // Pass setDatasetFilter to ScopeMenu
             />
             <Map
               mapboxAccessToken={mapboxToken}
@@ -165,7 +249,11 @@ function MenuWrapper() {
                 latitude: StevensLatitude,
                 zoom: 10
               }}
-              style={{ width: '100%', height: '100%', filter: geoJsonLoading ? 'blur(4px)' : 'none'}}
+              style={{
+                width: '100%',
+                height: '100%',
+                filter: geoJsonLoading ? 'blur(4px)' : 'none'
+              }}
               mapStyle="mapbox://styles/mapbox/light-v11"
             >
               <Marker
@@ -180,7 +268,6 @@ function MenuWrapper() {
           </div>
         </div>
       </div>
-      
       {/* // Creating toggle between student, employee, and all */}
       <div className='flex flex-col my-5 items-center'>
         <div className='text-center font-bold text-xl underline underline-offset-3 mb-2'>Metrics Data Analysis</div>
@@ -204,7 +291,7 @@ function MenuWrapper() {
             <span className="loading loading-spinner loading-lg mt-2"></span>
           </div>
         </>
-        :
+       :
         <>
           <div className='grid md:grid-cols-2 place-items-center grid-cols-1'> 
             {metrics[0] && 
@@ -303,7 +390,6 @@ function MenuWrapper() {
           </div> 
         </>
       }
-      
     </>
   );
 }
