@@ -6,19 +6,27 @@ const ScopeMenu = ({
   loading,
   error = null,
   setModeFilter,
-  availableModes
+  availableModes,
+  setDatasetFilter // Add setDatasetFilter prop
 }: {
   setUploadedData: Function;
   loading: boolean;
   error: any;
   setModeFilter: Function;
   availableModes: string[];
+  setDatasetFilter: Function; // Add setDatasetFilter prop
 }) => {
   const [selected, setSelected] = useState('all');
+  const [selectedDataset, setSelectedDataset] = useState('Student'); // State for selected dataset
 
   const handleModeSelection = (mode: string) => {
     setSelected(mode);
     setModeFilter(mode);
+  };
+
+  const handleDatasetSelection = (dataset: string) => {
+    setSelectedDataset(dataset);
+    setDatasetFilter(dataset); // Call setDatasetFilter with the selected dataset
   };
 
   return (
@@ -68,6 +76,33 @@ const ScopeMenu = ({
           </option>
         ))}
       </select>
+      <div className="mt-2 mb-1 font-bold text-md">Choose a dataset:</div>
+      <div className="flex justify-between">
+        <button
+          className={`btn ${
+            selectedDataset === 'Student' ? 'btn-primary' : 'btn-secondary'
+          }`}
+          onClick={() => handleDatasetSelection('Student')}
+        >
+          Student
+        </button>
+        <button
+          className={`btn ${
+            selectedDataset === 'Employee' ? 'btn-primary' : 'btn-secondary'
+          }`}
+          onClick={() => handleDatasetSelection('Employee')}
+        >
+          Employee
+        </button>
+        <button
+          className={`btn ${
+            selectedDataset === 'Both' ? 'btn-primary' : 'btn-secondary'
+          }`}
+          onClick={() => handleDatasetSelection('Both')}
+        >
+          Both
+        </button>
+      </div>
     </div>
   );
 };
