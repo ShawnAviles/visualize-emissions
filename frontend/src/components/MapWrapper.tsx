@@ -4,8 +4,8 @@ import type { LayerProps } from 'react-map-gl';
 
 import { useState, useEffect } from 'react';
 import ScopeMenu from './ScopeMenu';
-import routes from '../utility/sampleData/routePolylines/simple_routes_5.json';
-import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layers.json';
+// import routes from '../utility/sampleData/routePolylines/simple_routes_5.json';
+// import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layers.json';
 import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer } from '../utility/helper';
@@ -67,7 +67,7 @@ function MenuWrapper() {
   const {
     loading: geoJsonLoading,
     error: geoJsonError,
-    liveRoutesObject
+    // liveRoutesObject
   } = useGeoJson('http://localhost:3000/routes', uploadedData);
 
   const {
