@@ -11,15 +11,14 @@
     "prettier-format": "prettier --config .prettierrc 'src/**/*.tsx' --write"
   },
   "dependencies": {
-    "@types/d3": "^7.4.3",
     "@types/mapbox-gl": "^2.7.15",
-    "d3": "^7.8.5",
     "mapbox-gl": "^2.15.0",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.1.6",
-    "react-papaparse": "^4.4.0"
+    "react-papaparse": "^4.4.0",
+    "recharts": "^2.12.4"
   },
   "devDependencies": {
     "@types/node": "^20.8.2",

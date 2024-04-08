@@ -9,9 +9,7 @@ import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layer
 import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer } from '../utility/helper';
-import Barplot from './Barplot.tsx';
-import PieChart from './PieChart.tsx';
-import ViolinPlot from './ViolinPlot.tsx';
+import {  BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Label, PieChart, Pie } from 'recharts';
 
 // Used this to test the liveRoutes data as it is saved locally, atp it is just an extra sample data file:
 // import liveRoutesStatic from '../utility/sampleData/routePolylines/routes_gcp_28.json';
@@ -34,6 +32,30 @@ function MenuWrapper() {
   const [sources, setSources] = useState([] as React.ReactElement[]);
   const [modeFilter, setModeFilter] = useState('all');
   const [availableModes, setAvailableModes] = useState([] as string[]);
+  const [metricFilter, setMetricFilter] = useState('none');
+  
+  // Constants for the charts
+  const colors = ["#FF0000", "#FFA500", "#272B2E", "#C4A484", "#7B5343"];
+  const modeColors: { [key: string]: string } = {
+    "Car": "#FF0000",
+    "Bus": "#FFA500",
+    "Trains": "#272B2E",
+    "Light Rail": "#C4A484",
+    "Subway": "#7B5343"
+  };
+  
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
+    const radius = innerRadius + (outerRadius - innerRadius + 100) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    if (percent < 0.01) return null; //Check if the percentage is 0% and shouldn't be rendered
+    return (
+      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+        {`${(percent * 100).toFixed(1)}%`}
+      </text>
+    );
+  };
 
   const {
     loading: geoJsonLoading,
@@ -43,18 +65,27 @@ function MenuWrapper() {
 
   const {
     loading: metricsLoading,
-    error: metricsError,
-    metrics
-  } = useMetrics('http://localhost:3000/metrics', uploadedData);
+    metrics,
+  } = useMetrics(metricFilter);
 
-  // @h-pyo
-  // TODO: Remove this. This is just for logging and showing how to use
-  // the custom useMetrics hook to get metrics data
-  useEffect(() => {
-    console.log('metrics', metrics);
-    console.log('loadingState for metrics', metricsLoading);
-    console.log('errorState for metrics', metricsError);
-  }, [metrics]);
+  //Geting percentages of public transport vs cars
+  let publicTransport = 0;
+  let nonPublicTransport = 0;
+  let total = 0;
+  for (let mode of metrics) {
+    total += mode.value;
+    if (mode.name === "Cars") {
+      nonPublicTransport += mode.value;
+    } else {
+      publicTransport += mode.value;
+    }
+  }
+  publicTransport = Math.round(publicTransport / total * 10000) / 100;
+  nonPublicTransport = Math.round(nonPublicTransport / total * 10000) / 100;
+
+  const handleMetricSelection = (metric: string) => {
+    setMetricFilter(metric);
+  };
 
   useEffect(() => {
     if (Object.keys(liveRoutesObject).length > 0) {
@@ -162,8 +193,23 @@ function MenuWrapper() {
           </div>
         </div>
       </div>
+      {/* // Creating toggle between student, employee, and all */}
+      <div className='flex flex-col my-5 items-center'>
+        <div className='text-center font-bold text-xl underline underline-offset-3 mb-2'>Metrics Data Analysis</div>
+        <select
+          className = "select select-bordered select-sm w-64 "
+          value={metricFilter}
+          onChange={(e) => handleMetricSelection(e.target.value)}
+          defaultValue={"none"}
+          >
+          <option value="none">Select Metric</option>
+          <option value="Students">Students</option>
+          <option value="Employees">Employees</option>
+          <option value="Total">Total</option>
+        </select>
+      </div>
 
-      {metricsLoading ? (
+      {metricsLoading  ? 
         <>
           <div className="p-8 flex flex-col justify-center items-center italics text-primary text-[11pt]">
             Loading Metrics...
@@ -172,19 +218,101 @@ function MenuWrapper() {
         </>
       ) : (
         <>
-          {metrics[0] && (
-            <Barplot data={metrics[0] as { name: string; value: number }[]} />
-          )}
-          {metrics[0] && (
-            <PieChart data={metrics[0] as { name: string; value: number }[]} />
-          )}
-          {metrics[1] && (
-            <ViolinPlot
-              data={metrics[1] as { name: string; value: number }[]}
-              width={800}
-              height={500}
-            />
-          )}
+          <div className='grid md:grid-cols-2 place-items-center grid-cols-1'> 
+            {metrics[0] && 
+              <div className='md:h-[50vh] md:w-[50vw] h-[100vh] w-[100vw] mt-10'>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    width={500}
+                    height={300}
+                    data={metrics}
+                    margin={{
+                      top: 40,
+                      left: 20,
+                      bottom: 20,
+                    }}
+                  >
+                    <text x={500 / 2} y={20} fill="black" className='font-bold text-lg' textAnchor="middle" dominantBaseline="central">
+                      <tspan x="50%" dy={-10} lengthAdjust="spacingAndGlyphs">Monthly CO2(kg) Emissions</tspan>
+                      <tspan x="50%" dy={17} lengthAdjust="spacingAndGlyphs">From Each Mode of Transportation</tspan>
+                    </text>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" > 
+                      <Label value="Modes of Transportation" offset={-10} position="insideBottom" fill='black' className='font-medium'/>
+                    </XAxis>
+                    <YAxis >
+                      <Label value="Amount of CO2 Emitted (kg)" dy={-30} position="insideBottomLeft" offset={10} angle={-90} fill='black' className='font-medium'/>
+                    </YAxis>
+                    <Tooltip labelClassName='text-black' />
+                    <Bar dataKey="value" fill="#8884d8" activeBar={<Rectangle className='opacity-75' stroke="black" />}>
+                      {metrics.map((_entry: { name: string; value: number }, index: number) => (
+                        <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                      ))}
+                    </Bar>
+                    </BarChart>
+                </ResponsiveContainer>
+              </div>
+            }
+            {metrics[0] && 
+              <div className='flex flex-col justify-items-center mt-10 ml-12'>
+                  <div className='text-center text-lg font-bold'>Bar Chart Analysis</div>
+                  <div className='px-6 indent-5'>
+                    This bar chart displays the amount of CO2 emitted by each mode of transportation for each month based on the provided data.
+                    The calculation was done by taking each mode of transportation's total mileage and dividing it by the PMPG values for each type of vehicle to get total gallons.
+                    Then, multiply by a constant, which represents the amount of CO2 emitted per gallon of gasoline, to get the total CO2 emitted in kgs.
+                  </div>
+              </div>
+            }
+            {metrics[0] &&
+              <div className='md:h-[60vh] md:w-[50vw] h-[80vh] w-[100vw] mt-10'>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart width={500} height={400} margin={{top: 50, bottom: 20}}>
+                      <text x={500 / 2} y={20} fill="black" className='font-bold text-lg' textAnchor="middle" dominantBaseline="central">
+                        <tspan x="50%" dy={-10} lengthAdjust="spacingAndGlyphs">Percentage of Emissions</tspan>
+                        <tspan x="50%" dy={17} lengthAdjust="spacingAndGlyphs">Generated by Each Mode</tspan>
+                      </text>
+                      <Pie
+                        data={metrics}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={renderCustomizedLabel}
+                        outerRadius={175}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {metrics.map((_entry: { name: string; value: number }, index: number) => (
+                          <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                        ))}
+                      </Pie>
+                      <Legend
+                        payload={Object.keys(modeColors).map((mode: string) => ({
+                          value: mode,
+                          type: 'square',
+                          color: modeColors[mode] 
+                        }))}
+                        layout="horizontal" 
+                        verticalAlign="bottom"
+                        align='center'
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+              </div>
+            }
+            {metrics[0] && 
+              <div className='flex flex-col justify-items-center mt-10 ml-12 mb-12'>
+                  <div className='text-center text-lg font-bold'>Pie Chart Analysis</div>
+                  <div className='px-6 indent-5'>
+                    This chart utilizes the same calculated data as the bar chart finds the total CO2 emitted by the different modes of transportation.
+                    Then, using this total, it calculates the percentage of CO2 emitted by each mode of transportation. 
+                    <br/>
+                    <span className='font-medium'>
+                      Public Transportation: {publicTransport}% | Non-Public Transportation: {nonPublicTransport}%
+                    </span>
+                  </div>
+              </div>
+            }
+          </div> 
         </>
       )}
     </>
