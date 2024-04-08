@@ -80,24 +80,24 @@ const ScopeMenu = ({
       <div className="flex justify-between">
         <button
           className={`btn ${
-            selectedDataset === 'Student' ? 'btn-primary' : 'btn-secondary'
-          }`}
+            selectedDataset === 'Student' ? 'bg-blue-500' : 'bg-gray-200'
+          } hover:bg-blue-600`}
           onClick={() => handleDatasetSelection('Student')}
         >
           Student
         </button>
         <button
           className={`btn ${
-            selectedDataset === 'Employee' ? 'btn-primary' : 'btn-secondary'
-          }`}
+            selectedDataset === 'Employee' ? 'bg-blue-500' : 'bg-gray-200'
+          } hover:bg-blue-600`}
           onClick={() => handleDatasetSelection('Employee')}
         >
           Employee
         </button>
         <button
           className={`btn ${
-            selectedDataset === 'Both' ? 'btn-primary' : 'btn-secondary'
-          }`}
+            selectedDataset === 'Both' ? 'bg-blue-500' : 'bg-gray-200'
+          } hover:bg-blue-600`}
           onClick={() => handleDatasetSelection('Both')}
         >
           Both
