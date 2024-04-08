@@ -9,7 +9,7 @@ import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layer
 import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer } from '../utility/helper';
-import {  BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Label, PieChart, Pie, Sector } from 'recharts';
+import {  BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Label, PieChart, Pie } from 'recharts';
 
 // Used this to test the liveRoutes data as it is saved locally, atp it is just an extra sample data file:
 // import liveRoutesStatic from '../utility/sampleData/routePolylines/routes_gcp_28.json';
@@ -44,7 +44,7 @@ function MenuWrapper() {
   };
   
   const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: any) => {
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
     const radius = innerRadius + (outerRadius - innerRadius + 100) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -64,7 +64,6 @@ function MenuWrapper() {
 
   const {
     loading: metricsLoading,
-    error: metricsError,
     metrics,
   } = useMetrics(metricFilter);
 
@@ -209,7 +208,7 @@ function MenuWrapper() {
         <>
           <div className='grid md:grid-cols-2 place-items-center grid-cols-1'> 
             {metrics[0] && 
-              <div className='h-[50vh] w-[50vw] mt-10'>
+              <div className='md:h-[50vh] md:w-[50vw] h-[100vh] w-[100vw] mt-10'>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     width={500}
@@ -234,7 +233,7 @@ function MenuWrapper() {
                     </YAxis>
                     <Tooltip labelClassName='text-black' />
                     <Bar dataKey="value" fill="#8884d8" activeBar={<Rectangle className='opacity-75' stroke="black" />}>
-                      {metrics.map((entry: { name: string; value: number }, index: number) => (
+                      {metrics.map((_entry: { name: string; value: number }, index: number) => (
                         <Cell key={`cell-${index}`} fill={colors[index % 20]} />
                       ))}
                     </Bar>
@@ -253,7 +252,7 @@ function MenuWrapper() {
               </div>
             }
             {metrics[0] &&
-              <div className='h-[60vh] w-[50vw] mt-10'>
+              <div className='md:h-[60vh] md:w-[50vw] h-[80vh] w-[100vw] mt-10'>
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart width={500} height={400} margin={{top: 50, bottom: 20}}>
                       <text x={500 / 2} y={20} fill="black" className='font-bold text-lg' textAnchor="middle" dominantBaseline="central">
@@ -270,7 +269,7 @@ function MenuWrapper() {
                         fill="#8884d8"
                         dataKey="value"
                       >
-                        {metrics.map((entry: { name: string; value: number }, index: number) => (
+                        {metrics.map((_entry: { name: string; value: number }, index: number) => (
                           <Cell key={`cell-${index}`} fill={colors[index % 20]} />
                         ))}
                       </Pie>
