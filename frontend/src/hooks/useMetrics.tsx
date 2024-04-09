@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 // import { extractUniqueZipCodesAndModes } from '../utility/helper';
-// import data from '../utility/sampleData/api/metrics/sample_students_74/output.json';
+import student from '../utility/sampleData/api/metrics/sample_students_74/output.json';
+import employee from '../utility/sampleData/api/metrics/sample_employee_258/output.json';
 
 function useMetrics(filter: any) {
   const [metrics, setMetrics] = useState<{ name: string; value: number }[]>([]);
@@ -23,16 +24,18 @@ function useMetrics(filter: any) {
 
     const getMetrics = async (filter: string) => {
       if (filter === 'none') return;
-      let response: { json: () => any; } = { json: () => {} }; // Initialize response with a default value
+      let response : {name : string; value : number }[] = []  ; // Initialize response with a default value
       if (filter === 'Students') {
-        response = await fetch('./src/utility/sampleData/api/metrics/sample_students_74/output.json');
+        response = student.data[0].map((item: { name: string; value: number | null }) => ({
+          name: item.name,
+          value: item.value ?? 0,
+        }));
       } else if (filter === "Employees") {
-        response = await fetch('./src/utility/sampleData/api/metrics/sample_employee_258/output.json');
+        response = employee.data[0].map((item: { name: string; value: number | null }) => ({
+          name: item.name,
+          value: item.value ?? 0,
+        }));
       } else if (filter === "Total") {
-        const responseStudent = await fetch('./src/utility/sampleData/api/metrics/sample_students_74/output.json');
-        const responseEmployee = await fetch('./src/utility/sampleData/api/metrics/sample_employee_258/output.json');
-        const studentData = await responseStudent.json();
-        const employeeData = await responseEmployee.json();
         let combinedData = [
 					{
 							"name": "Cars",
@@ -56,19 +59,23 @@ function useMetrics(filter: any) {
 					}
 			];
         for (let i = 0; i < combinedData.length; i++) {
-          combinedData[i].value += Math.round(studentData.data[0][i].value / 12 * 100) / 100;
-          combinedData[i].value += Math.round(employeeData.data[0][i].value / 12 * 100) / 100;
+          if (student.data[0][i].value != null)  {
+            combinedData[i].value += Math.round(student.data[0][i].value / 12 * 100) / 100;
+          }
+          if (employee.data[0][i].value != null) {
+            combinedData[i].value += Math.round((employee.data[0][i].value ?? 0) / 12 * 100) / 100;
+          }
         }
+        console.log(combinedData);
         setMetrics(combinedData);
         return;
       }
-      
-      const res = await response.json();
-      let finalMetrics = res.data;
-      for (let i = 0; i < finalMetrics[0].length; i++) {
-        finalMetrics[0][i].value = Math.round((finalMetrics[0][i].value / 12) * 100) / 100;
+      let finalMetrics = response;
+      for (let i = 0; i < finalMetrics.length; i++) {
+        finalMetrics[i].value = Math.round((finalMetrics[i].value / 12) * 100) / 100;
       }
-      setMetrics(finalMetrics[0]);
+      console.log(finalMetrics);
+      setMetrics(finalMetrics);
     };
 
     // function call to server
