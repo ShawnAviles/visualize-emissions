@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import ScopeMenu from './ScopeMenu';
 // import routes from '../utility/sampleData/routePolylines/simple_routes_5.json';
 // import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layers.json';
-import useGeoJson from '../hooks/useGeoJson.tsx';
+// import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer } from '../utility/helper';
 import {  BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Label, PieChart, Pie } from 'recharts';
@@ -31,7 +31,7 @@ function MenuWrapper() {
   const mapboxToken: string = import.meta.env.VITE_MAPBOX_TOKEN;
   const StevensLongitude: number = -74.02414311907891;
   const StevensLatitude: number = 40.74509007605575;
-  const [uploadedData, setUploadedData] = useState({ data: [], errors: [], meta: [] });
+  // const [uploadedData, setUploadedData] = useState({ data: [], errors: [], meta: [] });
   const [sources, setSources] = useState([] as React.ReactElement[]);
   const [modeFilter, setModeFilter] = useState('all');
   const [availableModes, setAvailableModes] = useState([] as string[]);
@@ -64,11 +64,12 @@ function MenuWrapper() {
     );
   };
 
-  const {
-    loading: geoJsonLoading,
-    error: geoJsonError,
-    // liveRoutesObject
-  } = useGeoJson('http://localhost:3000/routes', uploadedData);
+  //Commented out liveRoutes call to backend since we are turning off uploading for expo
+  // const {
+  //   loading: geoJsonLoading,
+  //   error: geoJsonError,
+  //   // liveRoutesObject
+  // } = useGeoJson('http://localhost:3000/routes', uploadedData);
 
   const {
     loading: metricsLoading,
@@ -231,13 +232,14 @@ function MenuWrapper() {
 
   return (
     <>
-      <div className="h-[80vh] w-screen flex justify-center items-center px-16">
+      <div className="md:h-[80vh] h-[100vh] w-screen flex justify-center items-center md:px-16 px-4">
         <div className="h-full w-full rounded-lg border-sky-400 bg-gradient-to-r to-emerald-600 from-sky-400 p-1">
-          <div className="relative h-full w-full">
+          <div className="md:relative flex flex-col h-full w-full">
             <ScopeMenu
-              setUploadedData={setUploadedData}
-              loading={geoJsonLoading}
-              error={geoJsonError}
+              //Commented out liveRoutes call to backend since we are turning off uploading for expo
+              // setUploadedData={setUploadedData}
+              // loading={geoJsonLoading}
+              // error={geoJsonError}
               setModeFilter={setModeFilter} // Pass the setModeFilter function to ScopeMenu
               availableModes={availableModes} // Pass availableModes to ScopeMenu
               setDatasetFilter={setDatasetFilter} // Pass setDatasetFilter to ScopeMenu
@@ -251,8 +253,9 @@ function MenuWrapper() {
               }}
               style={{
                 width: '100%',
-                height: '100%',
-                filter: geoJsonLoading ? 'blur(4px)' : 'none'
+                height: '100%', 
+                borderRadius:"0.5rem",
+                // filter: geoJsonLoading ? 'blur(4px)' : 'none'
               }}
               mapStyle="mapbox://styles/mapbox/light-v11"
             >
@@ -295,15 +298,16 @@ function MenuWrapper() {
         <>
           <div className='grid md:grid-cols-2 place-items-center grid-cols-1'> 
             {metrics[0] && 
-              <div className='md:h-[50vh] md:w-[50vw] h-[100vh] w-[100vw] mt-10'>
+              <div className='md:h-[70vh] md:w-[50vw] h-[70vh] w-[100vw] mt-10'>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     width={500}
                     height={300}
                     data={metrics}
                     margin={{
-                      top: 40,
-                      left: 20,
+                      top: 45,
+                      left: 15,
+                      right: 10,
                       bottom: 20,
                     }}
                   >
@@ -312,8 +316,8 @@ function MenuWrapper() {
                       <tspan x="50%" dy={17} lengthAdjust="spacingAndGlyphs">From Each Mode of Transportation</tspan>
                     </text>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" > 
-                      <Label value="Modes of Transportation" offset={-10} position="insideBottom" fill='black' className='font-medium'/>
+                    <XAxis dataKey="name" tickMargin={25} height={60} angle={-45} dx={-20} interval={0}> 
+                      <Label value="Modes of Transportation" offset={-18} position="insideBottom" fill='black' className='font-medium'/>
                     </XAxis>
                     <YAxis >
                       <Label value="Amount of CO2 Emitted (kg)" dy={-30} position="insideBottomLeft" offset={10} angle={-90} fill='black' className='font-medium'/>
@@ -329,9 +333,9 @@ function MenuWrapper() {
               </div>
             }
             {metrics[0] && 
-              <div className='flex flex-col justify-items-center mt-10 ml-12'>
+              <div className='flex flex-col justify-items-center mt-10 ml-12 mr-12'>
                   <div className='text-center text-lg font-bold'>Bar Chart Analysis</div>
-                  <div className='px-6 indent-5'>
+                  <div className='md:px-6 px-0 indent-5'>
                     This bar chart displays the amount of CO2 emitted by each mode of transportation for each month based on the provided data.
                     The calculation was done by taking each mode of transportation's total mileage and dividing it by the PMPG values for each type of vehicle to get total gallons.
                     Then, multiply by a constant, which represents the amount of CO2 emitted per gallon of gasoline, to get the total CO2 emitted in kgs.
@@ -339,7 +343,7 @@ function MenuWrapper() {
               </div>
             }
             {metrics[0] &&
-              <div className='md:h-[60vh] md:w-[50vw] h-[80vh] w-[100vw] mt-10'>
+              <div className='md:h-[60vh] md:w-[50vw] h-[70vh] w-[100vw] mt-20'>
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart width={500} height={400} margin={{top: 50, bottom: 20}}>
                       <text x={500 / 2} y={20} fill="black" className='font-bold text-lg' textAnchor="middle" dominantBaseline="central">
@@ -375,9 +379,9 @@ function MenuWrapper() {
               </div>
             }
             {metrics[0] && 
-              <div className='flex flex-col justify-items-center mt-10 ml-12 mb-12'>
+              <div className='flex flex-col justify-items-center mt-10 ml-12 mb-12 mr-12'>
                   <div className='text-center text-lg font-bold'>Pie Chart Analysis</div>
-                  <div className='px-6 indent-5'>
+                  <div className='md:px-6 px-0 indent-5'>
                     This chart utilizes the same calculated data as the bar chart finds the total CO2 emitted by the different modes of transportation.
                     Then, using this total, it calculates the percentage of CO2 emitted by each mode of transportation. 
                     <br/>
