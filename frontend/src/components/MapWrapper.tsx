@@ -39,7 +39,6 @@ function MenuWrapper() {
 
   const studentData = studentDataset.data;
   const employeeData = employeeDataset.data;
-  const [metricFilter, setMetricFilter] = useState('none');
   
   // Constants for the charts
   const colors = ["#FF0000", "#FFA500", "#272B2E", "#C4A484", "#7B5343"];
@@ -74,7 +73,7 @@ function MenuWrapper() {
   const {
     loading: metricsLoading,
     metrics,
-  } = useMetrics(metricFilter);
+  } = useMetrics(datasetFilter);
 
   //Geting percentages of public transport vs cars
   let publicTransport = 0;
@@ -90,10 +89,6 @@ function MenuWrapper() {
   }
   publicTransport = Math.round(publicTransport / total * 10000) / 100;
   nonPublicTransport = Math.round(nonPublicTransport / total * 10000) / 100;
-
-  const handleMetricSelection = (metric: string) => {
-    setMetricFilter(metric);
-  };
 
   // useEffect(() => {
   //   if (Object.keys(liveRoutesObject).length > 0) {
@@ -274,17 +269,6 @@ function MenuWrapper() {
       {/* // Creating toggle between student, employee, and all */}
       <div className='flex flex-col my-5 items-center'>
         <div className='text-center font-bold text-xl underline underline-offset-3 mb-2'>Metrics Data Analysis</div>
-        <select
-          className = "select select-bordered select-sm w-64 "
-          value={metricFilter}
-          onChange={(e) => handleMetricSelection(e.target.value)}
-          defaultValue={"none"}
-          >
-          <option value="none">Select Metric</option>
-          <option value="Students">Students</option>
-          <option value="Employees">Employees</option>
-          <option value="Total">Total</option>
-        </select>
       </div>
 
       {metricsLoading  ? 

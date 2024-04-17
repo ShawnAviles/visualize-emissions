@@ -25,17 +25,17 @@ function useMetrics(filter: any) {
     const getMetrics = async (filter: string) => {
       if (filter === 'none') return;
       let response : {name : string; value : number }[] = []  ; // Initialize response with a default value
-      if (filter === 'Students') {
+      if (filter === 'Student') {
         response = student.data[0].map((item: { name: string; value: number | null }) => ({
           name: item.name,
           value: item.value ?? 0,
         }));
-      } else if (filter === "Employees") {
+      } else if (filter === "Employee") {
         response = employee.data[0].map((item: { name: string; value: number | null }) => ({
           name: item.name,
           value: item.value ?? 0,
         }));
-      } else if (filter === "Total") {
+      } else if (filter === "Both") {
         let combinedData = [
 					{
 							"name": "Cars",
