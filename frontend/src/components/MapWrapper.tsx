@@ -282,7 +282,7 @@ function MenuWrapper() {
         <>
           <div className='grid md:grid-cols-2 place-items-center grid-cols-1'> 
             {metrics[0] && 
-              <div className='md:h-[70vh] md:w-[50vw] h-[80vh] w-[100vw] mt-10 p-4'>
+              <div className='md:h-[70vh] md:w-[50vw] h-[80vh] w-[100vw] mt-10 p-8'>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     width={500}
@@ -327,7 +327,7 @@ function MenuWrapper() {
               </div>
             }
             {metrics[0] &&
-              <div className='md:h-[75vh] md:w-[50vw] h-[85vh] w-[100vw] mt-20 p-4'>
+              <div className='md:h-[75vh] md:w-[50vw] h-[85vh] w-[100vw] mt-20 p-8'>
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart width={500} height={400} margin={{top: 60, bottom: 20}}>
                       <text x={500 / 2} y={10} fill="black" className='font-bold text-lg' textAnchor="middle" dominantBaseline="central">
