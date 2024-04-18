@@ -1,0 +1,53 @@
+{
+  "TRAIN": [
+    {"zipCode": "10956", "commutesPerWeek": 2},
+    {"zipCode": "07050", "commutesPerWeek": 5},
+    {"zipCode": "07082", "commutesPerWeek": 5},
+    {"zipCode": "07029", "commutesPerWeek": 2},
+    {"zipCode": "07306", "commutesPerWeek": 7},
+    {"zipCode": "07621", "commutesPerWeek": 4},
+    {"zipCode": "07740", "commutesPerWeek": 5},
+    {"zipCode": "07057", "commutesPerWeek": 5},
+    {"zipCode": "07013", "commutesPerWeek": 4}
+  ],
+  "SUBWAY": [
+    {"zipCode": "11209", "commutesPerWeek": 5},
+    {"zipCode": "11219", "commutesPerWeek": 5}
+  ],
+  "BICYCLE": [
+    {"zipCode": "07030", "commutesPerWeek": 16},
+    {"zipCode": "07307", "commutesPerWeek": 7}
+  ],
+  "WALK": [
+    {"zipCode": "07030", "commutesPerWeek": 14},
+    {"zipCode": "07307", "commutesPerWeek": 9}
+  ],
+  "BUS": [
+    {"zipCode": "07306", "commutesPerWeek": 9},
+    {"zipCode": "07307", "commutesPerWeek": 18},
+    {"zipCode": "07604", "commutesPerWeek": 5},
+    {"zipCode": "07093", "commutesPerWeek": 5}
+  ],
+  "DRIVE": [
+    {"zipCode": "07036", "commutesPerWeek": 3},
+    {"zipCode": "07012", "commutesPerWeek": 4},
+    {"zipCode": "07644", "commutesPerWeek": 6},
+    {"zipCode": "07307", "commutesPerWeek": 12},
+    {"zipCode": "08816", "commutesPerWeek": 5},
+    {"zipCode": "07093", "commutesPerWeek": 7},
+    {"zipCode": "07020", "commutesPerWeek": 5},
+    {"zipCode": "07650", "commutesPerWeek": 3},
+    {"zipCode": "07024", "commutesPerWeek": 5},
+    {"zipCode": "07801", "commutesPerWeek": 4},
+    {"zipCode": "07107", "commutesPerWeek": 4},
+    {"zipCode": "07094", "commutesPerWeek": 5},
+    {"zipCode": "07628", "commutesPerWeek": 5},
+    {"zipCode": "07033", "commutesPerWeek": 7},
+    {"zipCode": "07105", "commutesPerWeek": 5},
+    {"zipCode": "07090", "commutesPerWeek": 4}
+  ],
+  "LIGHT_RAIL": [
+    {"zipCode": "07002", "commutesPerWeek": 5},
+    {"zipCode": "07087", "commutesPerWeek": 5}
+  ]
+}

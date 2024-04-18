@@ -66,7 +66,6 @@ function useMetrics(filter: any) {
             combinedData[i].value += Math.round((employee.data[0][i].value ?? 0) / 12 * 100) / 100;
           }
         }
-        console.log(combinedData);
         setMetrics(combinedData);
         return;
       }
@@ -74,7 +73,6 @@ function useMetrics(filter: any) {
       for (let i = 0; i < finalMetrics.length; i++) {
         finalMetrics[i].value = Math.round((finalMetrics[i].value / 12) * 100) / 100;
       }
-      console.log(finalMetrics);
       setMetrics(finalMetrics);
     };
 
