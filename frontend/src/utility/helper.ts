@@ -170,9 +170,9 @@ const generatePointLayer = (finalDensityGeoJson: any, opt: layerOptions) => {
     subway: '#7B5343',
     light_rail: '#C4A484',
     train: '#272B2E',
-    drive: '#FF0000',
+    drive: '#ff5a5f',
     walk: '#90EE90',
-    bicycle: '#00FF00'
+    bicycle: '#55ff83'
   };
 
   // default values if not based
@@ -208,7 +208,7 @@ const generatePointLayer = (finalDensityGeoJson: any, opt: layerOptions) => {
         ],
         'circle-stroke-color': 'white',
         'circle-stroke-width': 0.05,
-        'circle-opacity': 0.3
+        'circle-opacity': 0.1
       }
     });
   }
