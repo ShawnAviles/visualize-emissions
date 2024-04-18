@@ -8,15 +8,18 @@ import ScopeMenu from './ScopeMenu';
 // import routeLayers from '../utility/sampleData/routeLayers/simple_routes_5_layers.json';
 // import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
-import { generateRouteLayer } from '../utility/helper';
+import { generateRouteLayer, generatePointLayer } from '../utility/helper';
 import {  BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Label, PieChart, Pie } from 'recharts';
-
-// Used this to test the liveRoutes data as it is saved locally, atp it is just an extra sample data file:
-// import liveRoutesStatic from '../utility/sampleData/routePolylines/routes_gcp_28.json';
-// import liveRoutesLayersStatic from '../utility/sampleData/routeLayers/routes_gcp_28_layers.json';
+import { CommuteData } from '../utility/helper';
 
 import studentDataset from '../utility/sampleData/api/routes/sample_students_74/output.json';
 import employeeDataset from '../utility/sampleData/api/routes/sample_employee_258/output.json';
+
+import studentDensityDataset from '../utility/sampleData/api/density/sample_students_74.json';
+import employeeDensityDataset from '../utility/sampleData/api/density/sample_employee_258.json';
+
+import studentDensityCommutes from '../utility/sampleData/api/density/sample_students_74_commutes.json';
+import employeeDensityCommutes from '../utility/sampleData/api/density/sample_employee_258_commutes.json';
 
 type TransportationModes =
   | 'DRIVE'
@@ -40,7 +43,11 @@ function MenuWrapper() {
   const studentData = studentDataset.data;
   const employeeData = employeeDataset.data;
   const [metricFilter, setMetricFilter] = useState('none');
-  
+
+  const studentDensityData = studentDensityDataset;
+  const employeeDensityData = employeeDensityDataset;
+  const [mapModeFilter, setMapModeFilter] = useState('polylines'); // polylines or density
+
   // Constants for the charts
   const colors = ["#FF0000", "#FFA500", "#272B2E", "#C4A484", "#7B5343"];
   const modeColors: { [key: string]: string } = {
@@ -170,7 +177,6 @@ function MenuWrapper() {
     const renderPolyline = () => {
       let currentData = {};
       let modes = [];
-      console.log(datasetFilter);
       if (datasetFilter === 'Student') {
         currentData = studentData;
         modes = Object.keys(currentData);
@@ -196,7 +202,7 @@ function MenuWrapper() {
       }
       const sources: React.ReactElement[] = [];
       const existingModesOfTransport = Object.keys(currentData);
-
+      
       for (let mode of existingModesOfTransport) {
         if (modeFilter !== 'all' && modeFilter !== mode) {
           continue;
@@ -219,16 +225,135 @@ function MenuWrapper() {
             lineMetrics={true}
           >
             {currentLayers.map((layer, index) => (
-              <Layer key={index} {...(layer as LayerProps)} />
+              <Layer key={`polyline-${index}`} {...(layer as LayerProps)} />
             ))}
           </Source>
         );
       }
       setSources(sources);
-      console.log(currentData);
     };
-    renderPolyline();
-  }, [studentData, modeFilter, datasetFilter, employeeData]);
+
+    const renderDensity = () => {
+      let currentData = {};
+      let currentCommuteData = {};
+      let modes = [];
+      if (datasetFilter === 'Student') {
+        currentData = studentDensityData;
+        currentCommuteData = studentDensityCommutes;
+        modes = Object.keys(currentData);
+        setAvailableModes(modes);
+      } else if (datasetFilter === 'Employee') {
+        currentData = employeeDensityData;
+        currentCommuteData = employeeDensityCommutes;
+        modes = Object.keys(currentData);
+        setAvailableModes(modes);
+      } else {
+        // Combine data from both datasets
+        modes = [...new Set([...Object.keys(studentDensityData), ...Object.keys(studentDensityData)])];
+        const combinedData: { [key: string]: object[] } = {}; // Add index signature to allow indexing with a string
+
+        for (let mode of modes) {
+          // Combine routes for each mode
+          combinedData[mode] = [
+            ...(studentDensityData[mode as keyof typeof studentDensityData] || []),
+            ...(employeeDensityData[mode as keyof typeof employeeDensityData] || [])
+          ];
+        }
+        currentData = combinedData;
+        setAvailableModes(modes);
+
+        // Combine commute data from both density datasets
+        const combinedCommuteData: { [key: string]: CommuteData[] } = {}; // Add index signature to allow indexing with a string
+
+
+        for (let mode of modes) {
+          // Combine routes for each mode
+          const combinedCommuteDataForMode = [
+            ...(studentDensityCommutes[mode as keyof typeof studentDensityCommutes]),
+            ...(employeeDensityCommutes[mode as keyof typeof employeeDensityCommutes])
+          ];
+        
+          const result: {[zipcode: string]: {zipCode: string, commutesPerWeek: number}} = {};
+
+          for (let data of combinedCommuteDataForMode) {
+            if (result[data.zipCode]) {
+              result[data.zipCode].commutesPerWeek += data.commutesPerWeek || 0;
+            } else {
+              result[data.zipCode] = {...data, commutesPerWeek: data.commutesPerWeek || 0};
+            }
+          }
+
+          combinedCommuteData[mode] = Object.values(result);
+        }
+        currentCommuteData = combinedCommuteData;
+
+      }
+      const sources: React.ReactElement[] = [];
+      const existingModesOfTransport = Object.keys(currentData);
+
+      for (let mode of existingModesOfTransport) {
+        if (modeFilter !== 'all' && modeFilter !== mode) {
+          continue;
+        }
+        // TODO: realistically, this calculation should be memoized so that it isn't recalculated every time, this was used to try to scale the data
+        // calculate commutesTotal
+        // let commutesTotal = 0;
+        // let largestCommuteFrequency = 0;
+        // for (let mode of Object.keys(currentCommuteData)) {
+        //   const currObj = currentCommuteData[mode as keyof typeof currentCommuteData] as CommuteData[]; // Cast currObj as CommuteData[]
+        //   for (let commute of currObj) {
+        //     if (commute.commutesPerWeek && commute.commutesPerWeek > largestCommuteFrequency) {
+        //       largestCommuteFrequency = commute.commutesPerWeek;
+        //     }
+        //     commutesTotal += commute.commutesPerWeek || 1; // if null, default to 5. TODO: will need to fix null results in backend in future
+        //   }
+        // }
+        // student = 226
+        // employees = 799
+        // all = 1025
+
+        let currentDensity: object[] = currentData[mode as keyof typeof currentData];
+        let currentCommuteDataForMode = currentCommuteData[mode as keyof typeof currentCommuteData] as CommuteData[];
+
+        // Combine currentDensity and currentCommuteDataForMode; TODO: Fix this type stuff for density
+        let combinedData = currentDensity.map((density: any) => {
+          let commute = currentCommuteDataForMode.find((commute: { zipCode: string }) => commute.zipCode === density.zipCode);
+          return {
+            ...density,
+            properties: {
+              zipCode: density.zipCode,
+              commutesPerWeek: commute?.commutesPerWeek ? commute.commutesPerWeek : 1
+            }
+          };
+        });
+
+        let currentLayers = generatePointLayer(combinedData, {
+          modeOfTransport: mode as TransportationModes
+        });
+
+        sources.push(
+          <Source
+            id={mode}
+            key={mode}
+            type="geojson"
+            data={{
+              type: 'FeatureCollection',
+              features: combinedData as unknown as Feature<Geometry, GeoJsonProperties>[]
+            }}
+            lineMetrics={true}
+          >
+            {currentLayers.map((layer, index) => (
+              <Layer key={`density-${index}`} {...(layer as LayerProps)} />
+            ))}
+          </Source>
+        );
+      }
+      setSources(sources);
+    }
+
+    if (mapModeFilter === "polylines") renderPolyline();
+    else if (mapModeFilter === "density") renderDensity();
+  }, [studentDensityData, employeeDensityData, modeFilter, datasetFilter, mapModeFilter]);
 
   return (
     <>
@@ -243,6 +368,7 @@ function MenuWrapper() {
               setModeFilter={setModeFilter} // Pass the setModeFilter function to ScopeMenu
               availableModes={availableModes} // Pass availableModes to ScopeMenu
               setDatasetFilter={setDatasetFilter} // Pass setDatasetFilter to ScopeMenu
+              setMapModeFilter={setMapModeFilter} // Pass setModeFilter to ScopeMenu
             />
             <Map
               mapboxAccessToken={mapboxToken}
@@ -278,7 +404,6 @@ function MenuWrapper() {
           className = "select select-bordered select-sm w-64 "
           value={metricFilter}
           onChange={(e) => handleMetricSelection(e.target.value)}
-          defaultValue={"none"}
           >
           <option value="none">Select Metric</option>
           <option value="Students">Students</option>

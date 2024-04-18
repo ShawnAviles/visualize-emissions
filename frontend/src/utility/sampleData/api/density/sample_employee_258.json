@@ -1,0 +1,2256 @@
+{
+  "BICYCLE": [
+    {
+      "type": "Feature",
+      "zipCode": "10023",
+      "properties": {
+        "zipCode": "10023"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9799801,
+          40.7770198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07030",
+      "properties": {
+        "zipCode": "07030"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.02715119999999,
+          40.7440218
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07205",
+      "properties": {
+        "zipCode": "07205"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2240158,
+          40.6949061
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07307",
+      "properties": {
+        "zipCode": "07307"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0506328,
+          40.747290500000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07306",
+      "properties": {
+        "zipCode": "07306"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0711544,
+          40.7329874
+        ]
+      }
+    }
+  ],
+  "BUS": [
+    {
+      "type": "Feature",
+      "zipCode": "10023",
+      "properties": {
+        "zipCode": "10023"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.98001270000002,
+          40.776975799999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10708",
+      "properties": {
+        "zipCode": "10708"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.83321719999999,
+          40.938549699999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "11226",
+      "properties": {
+        "zipCode": "11226"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.953594,
+          40.646787499999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07307",
+      "properties": {
+        "zipCode": "07307"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.050607,
+          40.7473287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07047",
+      "properties": {
+        "zipCode": "07047"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0242964,
+          40.8054323
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07306",
+      "properties": {
+        "zipCode": "07306"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0710852,
+          40.732962799999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07093",
+      "properties": {
+        "zipCode": "07093"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0096294,
+          40.7857708
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07086",
+      "properties": {
+        "zipCode": "07086"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0214149,
+          40.7626984
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07087",
+      "properties": {
+        "zipCode": "07087"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0270223,
+          40.773757499999995
+        ]
+      }
+    }
+  ],
+  "DRIVE": [
+    {
+      "type": "Feature",
+      "zipCode": "10025",
+      "properties": {
+        "zipCode": "10025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9682686,
+          40.7999134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10033",
+      "properties": {
+        "zipCode": "10033"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9409019,
+          40.8543942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10282",
+      "properties": {
+        "zipCode": "10282"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0149479,
+          40.716590599999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10301",
+      "properties": {
+        "zipCode": "10301"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0922796,
+          40.6257269
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10304",
+      "properties": {
+        "zipCode": "10304"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0916938,
+          40.604650899999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10308",
+      "properties": {
+        "zipCode": "10308"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.150426,
+          40.5535156
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10467",
+      "properties": {
+        "zipCode": "10467"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8717253,
+          40.8725696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10916",
+      "properties": {
+        "zipCode": "10916"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2413447,
+          41.43984820000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10983",
+      "properties": {
+        "zipCode": "10983"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9510979,
+          41.02894010000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "11222",
+      "properties": {
+        "zipCode": "11222"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9503696,
+          40.728369699999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "11235",
+      "properties": {
+        "zipCode": "11235"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9420373,
+          40.5859802
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "18301",
+      "properties": {
+        "zipCode": "18301"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.23660509999999,
+          41.0540506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "21804",
+      "properties": {
+        "zipCode": "21804"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.5512986,
+          38.3181607
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07205",
+      "properties": {
+        "zipCode": "07205"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2240158,
+          40.6949061
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07307",
+      "properties": {
+        "zipCode": "07307"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0506328,
+          40.747290500000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07110",
+      "properties": {
+        "zipCode": "07110"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1533503,
+          40.8235998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07047",
+      "properties": {
+        "zipCode": "07047"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0242251,
+          40.8052439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07458",
+      "properties": {
+        "zipCode": "07458"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0934948,
+          41.0419901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07726",
+      "properties": {
+        "zipCode": "07726"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3463798,
+          40.2805537
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07052",
+      "properties": {
+        "zipCode": "07052"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2526917,
+          40.8027988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07738",
+      "properties": {
+        "zipCode": "07738"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1289695,
+          40.3345414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07024",
+      "properties": {
+        "zipCode": "07024"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9654681,
+          40.856334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07304",
+      "properties": {
+        "zipCode": "07304"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0740773,
+          40.716093699999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07666",
+      "properties": {
+        "zipCode": "07666"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0123502,
+          40.892551399999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07727",
+      "properties": {
+        "zipCode": "07727"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1603171,
+          40.1947865
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07002",
+      "properties": {
+        "zipCode": "07002"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1063447,
+          40.659034299999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08540",
+      "properties": {
+        "zipCode": "08540"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6517521,
+          40.3815333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07310",
+      "properties": {
+        "zipCode": "07310"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.03294559999999,
+          40.7300562
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08204",
+      "properties": {
+        "zipCode": "08204"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.9091923,
+          38.963853199999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07670",
+      "properties": {
+        "zipCode": "07670"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.953722,
+          40.9137266
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07721",
+      "properties": {
+        "zipCode": "07721"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2324354,
+          40.4359186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07306",
+      "properties": {
+        "zipCode": "07306"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0711544,
+          40.7329874
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07093",
+      "properties": {
+        "zipCode": "07093"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0092303,
+          40.7862808
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07094",
+      "properties": {
+        "zipCode": "07094"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.07090029999999,
+          40.782838000000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07452",
+      "properties": {
+        "zipCode": "07452"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1294946,
+          40.9584477
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07081",
+      "properties": {
+        "zipCode": "07081"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3283163,
+          40.699013799999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07410",
+      "properties": {
+        "zipCode": "07410"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.11826549999999,
+          40.9373079
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07029",
+      "properties": {
+        "zipCode": "07029"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1533673,
+          40.7447313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07059",
+      "properties": {
+        "zipCode": "07059"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.51130429999999,
+          40.620965399999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07719",
+      "properties": {
+        "zipCode": "07719"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0887582,
+          40.164224399999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07044",
+      "properties": {
+        "zipCode": "07044"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.24751479999999,
+          40.8362847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08807",
+      "properties": {
+        "zipCode": "08807"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.62844179999999,
+          40.5976996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08816",
+      "properties": {
+        "zipCode": "08816"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4118305,
+          40.433295699999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07645",
+      "properties": {
+        "zipCode": "07645"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.048721,
+          41.0543742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07305",
+      "properties": {
+        "zipCode": "07305"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0886477,
+          40.70093190000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07470",
+      "properties": {
+        "zipCode": "07470"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2544278,
+          40.941324699999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07302",
+      "properties": {
+        "zipCode": "07302"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.04469770000001,
+          40.7218473
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08854",
+      "properties": {
+        "zipCode": "08854"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4640187,
+          40.5542221
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07407",
+      "properties": {
+        "zipCode": "07407"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1181339,
+          40.9074558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07086",
+      "properties": {
+        "zipCode": "07086"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.02143199999999,
+          40.7626759
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08638",
+      "properties": {
+        "zipCode": "08638"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.76248629999999,
+          40.2520271
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07006",
+      "properties": {
+        "zipCode": "07006"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2819779,
+          40.8513204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07850",
+      "properties": {
+        "zipCode": "07850"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6701011,
+          40.9049355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07070",
+      "properties": {
+        "zipCode": "07070"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1096735,
+          40.8248617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08889",
+      "properties": {
+        "zipCode": "08889"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.76982919999999,
+          40.5967434
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07026",
+      "properties": {
+        "zipCode": "07026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.10619760000002,
+          40.8762396
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07057",
+      "properties": {
+        "zipCode": "07057"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.10381389999999,
+          40.8534686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07663",
+      "properties": {
+        "zipCode": "07663"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0947544,
+          40.9040894
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08820",
+      "properties": {
+        "zipCode": "08820"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3548431,
+          40.5755911
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07661",
+      "properties": {
+        "zipCode": "07661"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.03873279999999,
+          40.928461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07675",
+      "properties": {
+        "zipCode": "07675"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0003588,
+          41.0208841
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07003",
+      "properties": {
+        "zipCode": "07003"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1885956,
+          40.7989057
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07640",
+      "properties": {
+        "zipCode": "07640"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.977566,
+          40.995868
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07032",
+      "properties": {
+        "zipCode": "07032"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1166989,
+          40.759065299999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07803",
+      "properties": {
+        "zipCode": "07803"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6023488,
+          40.8783394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07039",
+      "properties": {
+        "zipCode": "07039"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.32347949999999,
+          40.7930126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07461",
+      "properties": {
+        "zipCode": "07461"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6406373,
+          41.2415139
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08846",
+      "properties": {
+        "zipCode": "08846"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5052073,
+          40.575401600000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07071",
+      "properties": {
+        "zipCode": "07071"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.10458779999999,
+          40.797852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08550",
+      "properties": {
+        "zipCode": "08550"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6282772,
+          40.2788884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07644",
+      "properties": {
+        "zipCode": "07644"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0795882,
+          40.8803024
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07933",
+      "properties": {
+        "zipCode": "07933"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4740516,
+          40.6981708
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07045",
+      "properties": {
+        "zipCode": "07045"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3763469,
+          40.913907099999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07936",
+      "properties": {
+        "zipCode": "07936"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3646066,
+          40.8135182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07733",
+      "properties": {
+        "zipCode": "07733"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1801955,
+          40.3762954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08859",
+      "properties": {
+        "zipCode": "08859"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3159968,
+          40.4593604
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08869",
+      "properties": {
+        "zipCode": "08869"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.6459069,
+          40.5744399
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07040",
+      "properties": {
+        "zipCode": "07040"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2710005,
+          40.7308388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07747",
+      "properties": {
+        "zipCode": "07747"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2296878,
+          40.4032583
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07604",
+      "properties": {
+        "zipCode": "07604"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0742798,
+          40.864044199999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07649",
+      "properties": {
+        "zipCode": "07649"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0388998,
+          40.952730599999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07981",
+      "properties": {
+        "zipCode": "07981"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.41752199999999,
+          40.825965
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08904",
+      "properties": {
+        "zipCode": "08904"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4260317,
+          40.5019978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07712",
+      "properties": {
+        "zipCode": "07712"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.05976969999999,
+          40.24520450000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07042",
+      "properties": {
+        "zipCode": "07042"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2120809,
+          40.8219262
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07087",
+      "properties": {
+        "zipCode": "07087"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0269962,
+          40.7737893
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07054",
+      "properties": {
+        "zipCode": "07054"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.39318109999999,
+          40.8620762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07401",
+      "properties": {
+        "zipCode": "07401"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1300163,
+          41.0368287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07074",
+      "properties": {
+        "zipCode": "07074"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.05042759999999,
+          40.8361405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07009",
+      "properties": {
+        "zipCode": "07009"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.229221,
+          40.8594855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07676",
+      "properties": {
+        "zipCode": "07676"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0591769,
+          40.988324000000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07083",
+      "properties": {
+        "zipCode": "07083"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2532088,
+          40.684268499999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08831",
+      "properties": {
+        "zipCode": "08831"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4348365,
+          40.3365091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07103",
+      "properties": {
+        "zipCode": "07103"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.19748589999999,
+          40.7383834
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08857",
+      "properties": {
+        "zipCode": "08857"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.33529209999999,
+          40.387984499999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07606",
+      "properties": {
+        "zipCode": "07606"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.04616930000002,
+          40.8590443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08835",
+      "properties": {
+        "zipCode": "08835"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5904091,
+          40.5447603
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08844",
+      "properties": {
+        "zipCode": "08844"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.647988,
+          40.5106391
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07028",
+      "properties": {
+        "zipCode": "07028"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.20343079999999,
+          40.803242399999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07111",
+      "properties": {
+        "zipCode": "07111"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.23584679999999,
+          40.7162852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08822",
+      "properties": {
+        "zipCode": "08822"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.85029279999999,
+          40.5369979
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07508",
+      "properties": {
+        "zipCode": "07508"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.18853399999999,
+          40.9565552
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07010",
+      "properties": {
+        "zipCode": "07010"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9859887,
+          40.8222083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07073",
+      "properties": {
+        "zipCode": "07073"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0828358,
+          40.8136492
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07109",
+      "properties": {
+        "zipCode": "07109"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1653899,
+          40.795819099999996
+        ]
+      }
+    }
+  ],
+  "SUBWAY": [
+    {
+      "type": "Feature",
+      "zipCode": "10027",
+      "properties": {
+        "zipCode": "10027"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.96232189999999,
+          40.8138703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10040",
+      "properties": {
+        "zipCode": "10040"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.93304289999999,
+          40.8639624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "10305",
+      "properties": {
+        "zipCode": "10305"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.07111549999999,
+          40.5943709
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "11106",
+      "properties": {
+        "zipCode": "11106"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.92722069999999,
+          40.7595305
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "11210",
+      "properties": {
+        "zipCode": "11210"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9451598,
+          40.6284767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "11218",
+      "properties": {
+        "zipCode": "11218"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9803558,
+          40.6483418
+        ]
+      }
+    }
+  ],
+  "TRAIN": [
+    {
+      "type": "Feature",
+      "zipCode": "10965",
+      "properties": {
+        "zipCode": "10965"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0123961,
+          41.059897400000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "19119",
+      "properties": {
+        "zipCode": "19119"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.1954293,
+          40.0487683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07052",
+      "properties": {
+        "zipCode": "07052"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2526917,
+          40.8027988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07306",
+      "properties": {
+        "zipCode": "07306"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0710852,
+          40.732962799999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07410",
+      "properties": {
+        "zipCode": "07410"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.11826549999999,
+          40.9373079
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07302",
+      "properties": {
+        "zipCode": "07302"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.04470479999999,
+          40.7218047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07070",
+      "properties": {
+        "zipCode": "07070"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1096735,
+          40.8248617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07003",
+      "properties": {
+        "zipCode": "07003"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.18851769999999,
+          40.798912200000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07071",
+      "properties": {
+        "zipCode": "07071"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.10458779999999,
+          40.797852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07920",
+      "properties": {
+        "zipCode": "07920"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5589251,
+          40.6861373
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "08904",
+      "properties": {
+        "zipCode": "08904"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.4260317,
+          40.5019978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07042",
+      "properties": {
+        "zipCode": "07042"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.212051,
+          40.821962400000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07401",
+      "properties": {
+        "zipCode": "07401"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1300163,
+          41.0368287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07079",
+      "properties": {
+        "zipCode": "07079"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.258946,
+          40.7496862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07940",
+      "properties": {
+        "zipCode": "07940"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.42306769999999,
+          40.7620101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07031",
+      "properties": {
+        "zipCode": "07031"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1300238,
+          40.7907276
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07016",
+      "properties": {
+        "zipCode": "07016"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3059786,
+          40.6569685
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07028",
+      "properties": {
+        "zipCode": "07028"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.2034072,
+          40.8032681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07656",
+      "properties": {
+        "zipCode": "07656"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0447463,
+          41.0373053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07946",
+      "properties": {
+        "zipCode": "07946"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.5165847,
+          40.6663352
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07423",
+      "properties": {
+        "zipCode": "07423"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0977198,
+          41.0004452
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07013",
+      "properties": {
+        "zipCode": "07013"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.17661939999999,
+          40.866551699999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07023",
+      "properties": {
+        "zipCode": "07023"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3851379,
+          40.6407094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07601",
+      "properties": {
+        "zipCode": "07601"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0477295,
+          40.8876565
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07075",
+      "properties": {
+        "zipCode": "07075"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0918775,
+          40.85176
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07840",
+      "properties": {
+        "zipCode": "07840"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8521178,
+          40.856598500000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07011",
+      "properties": {
+        "zipCode": "07011"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1416228,
+          40.881178399999996
+        ]
+      }
+    }
+  ],
+  "WALK": [
+    {
+      "type": "Feature",
+      "zipCode": "07030",
+      "properties": {
+        "zipCode": "07030"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.02715119999999,
+          40.7440218
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07307",
+      "properties": {
+        "zipCode": "07307"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.050607,
+          40.7473287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07310",
+      "properties": {
+        "zipCode": "07310"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0330281,
+          40.730066099999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07086",
+      "properties": {
+        "zipCode": "07086"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0214149,
+          40.7626984
+        ]
+      }
+    }
+  ],
+  "LIGHT_RAIL": [
+    {
+      "type": "Feature",
+      "zipCode": "07304",
+      "properties": {
+        "zipCode": "07304"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0740773,
+          40.716093699999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07002",
+      "properties": {
+        "zipCode": "07002"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1063535,
+          40.658971799999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07302",
+      "properties": {
+        "zipCode": "07302"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.04470479999999,
+          40.7218047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "zipCode": "07086",
+      "properties": {
+        "zipCode": "07086"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0214149,
+          40.7626984
+        ]
+      }
+    }
+  ]
+}

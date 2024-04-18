@@ -8,7 +8,8 @@ const ScopeMenu = ({
   // error = null,
   setModeFilter,
   availableModes,
-  setDatasetFilter // Add setDatasetFilter prop
+  setDatasetFilter, // Add setDatasetFilter prop
+  setMapModeFilter // Add setMapModeFilter prop
 }: {
   // setUploadedData: Function;
   // loading: boolean;
@@ -16,14 +17,21 @@ const ScopeMenu = ({
   setModeFilter: Function;
   availableModes: string[];
   setDatasetFilter: Function; // Add setDatasetFilter prop
+  setMapModeFilter: Function; // Add setMapModeFilter prop
 }) => {
   const [selected, setSelected] = useState('all');
+  const [selectedMapMode, setSelectedMapMode] = useState('all'); // State for selected map mode [polylines, dots
   const [selectedDataset, setSelectedDataset] = useState('Student'); // State for selected dataset
 
   const handleModeSelection = (mode: string) => {
     setSelected(mode);
     setModeFilter(mode);
   };
+
+  const handleMapModeSelection = (mapMode: string) => {
+    setSelectedMapMode(mapMode);
+    setMapModeFilter(mapMode);
+  }
 
   const handleDatasetSelection = (dataset: string) => {
     setSelectedDataset(dataset);
@@ -52,7 +60,7 @@ const ScopeMenu = ({
           Error: There was an error uploading your file
         </div>
       )} */}
-      <div className="mb-1 font-bold text-md">Choose a travel mode:</div>
+      <div className="mb-1 font-bold text-md">Travel mode:</div>
       <select
         className="select select-bordered select-sm w-full"
         value={selected}
@@ -78,6 +86,15 @@ const ScopeMenu = ({
               : mode}
           </option>
         ))}
+      </select>
+      <div className="mt-3 mb-1 font-bold text-md">Map mode:</div>
+      <select
+        className="select select-bordered select-sm w-full"
+        value={selectedMapMode}
+        onChange={(e) => handleMapModeSelection(e.target.value)}
+      >
+        <option value="polylines">View Routes</option>
+        <option value="density">View Density Map</option>
       </select>
       <div className="mt-2 mb-1 font-bold text-md">Choose a dataset:</div>
       <div className="flex justify-between">
