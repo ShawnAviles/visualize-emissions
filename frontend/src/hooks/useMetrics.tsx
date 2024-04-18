@@ -25,17 +25,17 @@ function useMetrics(filter: any) {
     const getMetrics = async (filter: string) => {
       if (filter === 'none') return;
       let response : {name : string; value : number }[] = []  ; // Initialize response with a default value
-      if (filter === 'Students') {
+      if (filter === 'Student') {
         response = student.data[0].map((item: { name: string; value: number | null }) => ({
           name: item.name,
           value: item.value ?? 0,
         }));
-      } else if (filter === "Employees") {
+      } else if (filter === "Employee") {
         response = employee.data[0].map((item: { name: string; value: number | null }) => ({
           name: item.name,
           value: item.value ?? 0,
         }));
-      } else if (filter === "Total") {
+      } else if (filter === "Both") {
         let combinedData = [
 					{
 							"name": "Cars",
@@ -66,7 +66,6 @@ function useMetrics(filter: any) {
             combinedData[i].value += Math.round((employee.data[0][i].value ?? 0) / 12 * 100) / 100;
           }
         }
-        console.log(combinedData);
         setMetrics(combinedData);
         return;
       }
@@ -74,7 +73,6 @@ function useMetrics(filter: any) {
       for (let i = 0; i < finalMetrics.length; i++) {
         finalMetrics[i].value = Math.round((finalMetrics[i].value / 12) * 100) / 100;
       }
-      console.log(finalMetrics);
       setMetrics(finalMetrics);
     };
 
