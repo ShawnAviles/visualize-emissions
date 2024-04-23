@@ -9,7 +9,21 @@ import ScopeMenu from './ScopeMenu';
 // import useGeoJson from '../hooks/useGeoJson.tsx';
 import useMetrics from '../hooks/useMetrics.tsx';
 import { generateRouteLayer, generatePointLayer } from '../utility/helper';
-import {  BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Label, PieChart, Pie } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  Rectangle,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Cell,
+  Label,
+  PieChart,
+  Pie
+} from 'recharts';
 import { CommuteData } from '../utility/helper';
 
 import studentDataset from '../utility/sampleData/api/routes/sample_students_74/output.json';
@@ -48,23 +62,36 @@ function MenuWrapper() {
   const [mapModeFilter, setMapModeFilter] = useState('polylines'); // polylines or density
 
   // Constants for the charts
-  const colors = ["#FF0000", "#FFA500", "#272B2E", "#C4A484", "#7B5343"];
+  const colors = ['#FF0000', '#FFA500', '#272B2E', '#C4A484', '#7B5343'];
   const modeColors: { [key: string]: string } = {
-    "Car": "#FF0000",
-    "Bus": "#FFA500",
-    "Trains": "#272B2E",
-    "Light Rail": "#C4A484",
-    "Subway": "#7B5343"
+    Car: '#FF0000',
+    Bus: '#FFA500',
+    Trains: '#272B2E',
+    'Light Rail': '#C4A484',
+    Subway: '#7B5343'
   };
-  
+
   const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent
+  }: any) => {
     const radius = innerRadius + (outerRadius - innerRadius + 95) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
     if (percent < 0.01) return null; //Check if the percentage is 0% and shouldn't be rendered
     return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? 'start' : 'end'}
+        dominantBaseline="central"
+      >
         {`${(percent * 100).toFixed(1)}%`}
       </text>
     );
@@ -77,10 +104,7 @@ function MenuWrapper() {
   //   // liveRoutesObject
   // } = useGeoJson('http://localhost:3000/routes', uploadedData);
 
-  const {
-    loading: metricsLoading,
-    metrics,
-  } = useMetrics(datasetFilter);
+  const { loading: metricsLoading, metrics } = useMetrics(datasetFilter);
 
   //Geting percentages of public transport vs cars
   let publicTransport = 0;
@@ -88,14 +112,14 @@ function MenuWrapper() {
   let total = 0;
   for (let mode of metrics) {
     total += mode.value;
-    if (mode.name === "Cars") {
+    if (mode.name === 'Cars') {
       nonPublicTransport += mode.value;
     } else {
       publicTransport += mode.value;
     }
   }
-  publicTransport = Math.round(publicTransport / total * 10000) / 100;
-  nonPublicTransport = Math.round(nonPublicTransport / total * 10000) / 100;
+  publicTransport = Math.round((publicTransport / total) * 10000) / 100;
+  nonPublicTransport = Math.round((nonPublicTransport / total) * 10000) / 100;
 
   // useEffect(() => {
   //   if (Object.keys(liveRoutesObject).length > 0) {
@@ -197,7 +221,7 @@ function MenuWrapper() {
       }
       const sources: React.ReactElement[] = [];
       const existingModesOfTransport = Object.keys(currentData);
-      
+
       for (let mode of existingModesOfTransport) {
         if (modeFilter !== 'all' && modeFilter !== mode) {
           continue;
@@ -244,7 +268,12 @@ function MenuWrapper() {
         setAvailableModes(modes);
       } else {
         // Combine data from both datasets
-        modes = [...new Set([...Object.keys(studentDensityData), ...Object.keys(studentDensityData)])];
+        modes = [
+          ...new Set([
+            ...Object.keys(studentDensityData),
+            ...Object.keys(studentDensityData)
+          ])
+        ];
         const combinedData: { [key: string]: object[] } = {}; // Add index signature to allow indexing with a string
 
         for (let mode of modes) {
@@ -260,28 +289,31 @@ function MenuWrapper() {
         // Combine commute data from both density datasets
         const combinedCommuteData: { [key: string]: CommuteData[] } = {}; // Add index signature to allow indexing with a string
 
-
         for (let mode of modes) {
           // Combine routes for each mode
           const combinedCommuteDataForMode = [
-            ...(studentDensityCommutes[mode as keyof typeof studentDensityCommutes]),
-            ...(employeeDensityCommutes[mode as keyof typeof employeeDensityCommutes])
+            ...studentDensityCommutes[mode as keyof typeof studentDensityCommutes],
+            ...employeeDensityCommutes[mode as keyof typeof employeeDensityCommutes]
           ];
-        
-          const result: {[zipcode: string]: {zipCode: string, commutesPerWeek: number}} = {};
+
+          const result: {
+            [zipcode: string]: { zipCode: string; commutesPerWeek: number };
+          } = {};
 
           for (let data of combinedCommuteDataForMode) {
             if (result[data.zipCode]) {
               result[data.zipCode].commutesPerWeek += data.commutesPerWeek || 0;
             } else {
-              result[data.zipCode] = {...data, commutesPerWeek: data.commutesPerWeek || 0};
+              result[data.zipCode] = {
+                ...data,
+                commutesPerWeek: data.commutesPerWeek || 0
+              };
             }
           }
 
           combinedCommuteData[mode] = Object.values(result);
         }
         currentCommuteData = combinedCommuteData;
-
       }
       const sources: React.ReactElement[] = [];
       const existingModesOfTransport = Object.keys(currentData);
@@ -308,11 +340,15 @@ function MenuWrapper() {
         // all = 1025
 
         let currentDensity: object[] = currentData[mode as keyof typeof currentData];
-        let currentCommuteDataForMode = currentCommuteData[mode as keyof typeof currentCommuteData] as CommuteData[];
+        let currentCommuteDataForMode = currentCommuteData[
+          mode as keyof typeof currentCommuteData
+        ] as CommuteData[];
 
         // Combine currentDensity and currentCommuteDataForMode; TODO: Fix this type stuff for density
         let combinedData = currentDensity.map((density: any) => {
-          let commute = currentCommuteDataForMode.find((commute: { zipCode: string }) => commute.zipCode === density.zipCode);
+          let commute = currentCommuteDataForMode.find(
+            (commute: { zipCode: string }) => commute.zipCode === density.zipCode
+          );
           return {
             ...density,
             properties: {
@@ -344,10 +380,10 @@ function MenuWrapper() {
         );
       }
       setSources(sources);
-    }
+    };
 
-    if (mapModeFilter === "polylines") renderPolyline();
-    else if (mapModeFilter === "density") renderDensity();
+    if (mapModeFilter === 'polylines') renderPolyline();
+    else if (mapModeFilter === 'density') renderDensity();
   }, [studentDensityData, employeeDensityData, modeFilter, datasetFilter, mapModeFilter]);
 
   return (
@@ -374,8 +410,8 @@ function MenuWrapper() {
               }}
               style={{
                 width: '100%',
-                height: '100%', 
-                borderRadius:"0.5rem",
+                height: '100%',
+                borderRadius: '0.5rem'
                 // filter: geoJsonLoading ? 'blur(4px)' : 'none'
               }}
               mapStyle="mapbox://styles/mapbox/light-v11"
@@ -393,22 +429,24 @@ function MenuWrapper() {
         </div>
       </div>
       {/* // Creating toggle between student, employee, and all */}
-      <div className='flex flex-col my-5 items-center'>
-        <div className='text-center font-bold text-xl underline underline-offset-3 mb-2'>Metrics Data Analysis</div>
+      <div className="flex flex-col my-5 items-center">
+        <div className="text-center font-bold text-xl underline underline-offset-3 mb-2">
+          Metrics Data Analysis
+        </div>
       </div>
 
-      {metricsLoading  ? 
+      {metricsLoading ? (
         <>
           <div className="p-8 flex flex-col justify-center items-center italics text-primary text-[11pt]">
             Loading Metrics...
             <span className="loading loading-spinner loading-lg mt-2"></span>
           </div>
         </>
-       :
+      ) : (
         <>
-          <div className='grid md:grid-cols-2 place-items-center grid-cols-1'> 
-            {metrics[0] && 
-              <div className='md:h-[70vh] md:w-[50vw] h-[70vh] w-[100vw] mt-10'>
+          <div className="grid md:grid-cols-2 place-items-center grid-cols-1">
+            {metrics[0] && (
+              <div className="md:h-[70vh] md:w-[50vw] h-[70vh] w-[100vw] mt-10">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     width={500}
@@ -418,92 +456,150 @@ function MenuWrapper() {
                       top: 45,
                       left: 15,
                       right: 10,
-                      bottom: 20,
+                      bottom: 20
                     }}
                   >
-                    <text x={500 / 2} y={20} fill="black" className='font-bold text-lg' textAnchor="middle" dominantBaseline="central">
-                      <tspan x="50%" dy={-5} lengthAdjust="spacingAndGlyphs">Monthly CO2(kg) Emissions</tspan>
-                      <tspan x="50%" dy={17} lengthAdjust="spacingAndGlyphs">From Each Mode of Transportation</tspan>
+                    <text
+                      x={500 / 2}
+                      y={20}
+                      fill="black"
+                      className="font-bold text-lg"
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                    >
+                      <tspan x="50%" dy={-5} lengthAdjust="spacingAndGlyphs">
+                        Monthly CO2(kg) Emissions
+                      </tspan>
+                      <tspan x="50%" dy={17} lengthAdjust="spacingAndGlyphs">
+                        From Each Mode of Transportation
+                      </tspan>
                     </text>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" tickMargin={25} height={60} angle={-45} dx={-20} interval={0}> 
-                      <Label value="Modes of Transportation" offset={-18} position="insideBottom" fill='black' className='font-medium'/>
+                    <XAxis
+                      dataKey="name"
+                      tickMargin={25}
+                      height={60}
+                      angle={-45}
+                      dx={-20}
+                      interval={0}
+                    >
+                      <Label
+                        value="Modes of Transportation"
+                        offset={-18}
+                        position="insideBottom"
+                        fill="black"
+                        className="font-medium"
+                      />
                     </XAxis>
-                    <YAxis >
-                      <Label value="Amount of CO2 Emitted (kg)" dy={-30} position="insideBottomLeft" offset={10} angle={-90} fill='black' className='font-medium'/>
+                    <YAxis>
+                      <Label
+                        value="Amount of CO2 Emitted (kg)"
+                        dy={-30}
+                        position="insideBottomLeft"
+                        offset={10}
+                        angle={-90}
+                        fill="black"
+                        className="font-medium"
+                      />
                     </YAxis>
-                    <Tooltip labelClassName='text-black' />
-                    <Bar dataKey="value" fill="#8884d8" activeBar={<Rectangle className='opacity-75' stroke="black" />}>
-                      {metrics.map((_entry: { name: string; value: number }, index: number) => (
-                        <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-                      ))}
+                    <Tooltip labelClassName="text-black" />
+                    <Bar
+                      dataKey="value"
+                      fill="#8884d8"
+                      activeBar={<Rectangle className="opacity-75" stroke="black" />}
+                    >
+                      {metrics.map(
+                        (_entry: { name: string; value: number }, index: number) => (
+                          <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                        )
+                      )}
                     </Bar>
-                    </BarChart>
+                  </BarChart>
                 </ResponsiveContainer>
               </div>
-            }
-            {metrics[0] && 
-              <div className='flex flex-col justify-items-center mt-10 ml-12 mr-12'>
-                  <div className='text-center text-lg font-bold'>Bar Chart Analysis</div>
-                  <div className='md:px-6 px-0 indent-5'>
-                    This bar chart displays the amount of CO2 emitted by each mode of transportation for each month based on the provided data.
-                    The calculation was done by taking each mode of transportation's total mileage and dividing it by the PMPG values for each type of vehicle to get total gallons.
-                    Then, multiply by a constant, which represents the amount of CO2 emitted per gallon of gasoline, to get the total CO2 emitted in kgs.
-                  </div>
+            )}
+            {metrics[0] && (
+              <div className="flex flex-col justify-items-center mt-10 ml-12 mr-12">
+                <div className="text-center text-lg font-bold">Bar Chart Analysis</div>
+                <div className="md:px-6 px-0 indent-5">
+                  This bar chart displays the amount of CO2 emitted by each mode of
+                  transportation for each month based on the provided data. The
+                  calculation was done by taking each mode of transportation's total
+                  mileage and dividing it by the PMPG values for each type of vehicle to
+                  get total gallons. Then, multiply by a constant, which represents the
+                  amount of CO2 emitted per gallon of gasoline, to get the total CO2
+                  emitted in kgs.
+                </div>
               </div>
-            }
-            {metrics[0] &&
-              <div className='md:h-[60vh] md:w-[50vw] h-[70vh] w-[100vw] mt-20'>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart width={500} height={400} margin={{top: 50, bottom: 20}}>
-                      <text x={500 / 2} y={20} fill="black" className='font-bold text-lg' textAnchor="middle" dominantBaseline="central">
-                        <tspan x="50%" dy={-3} lengthAdjust="spacingAndGlyphs">Percentage of Emissions</tspan>
-                        <tspan x="50%" dy={17} lengthAdjust="spacingAndGlyphs">Generated by Each Mode</tspan>
-                      </text>
-                      <Pie
-                        data={metrics}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={renderCustomizedLabel}
-                        outerRadius={175}
-                        fill="#8884d8"
-                        dataKey="value"
-                      >
-                        {metrics.map((_entry: { name: string; value: number }, index: number) => (
+            )}
+            {metrics[0] && (
+              <div className="md:h-[60vh] md:w-[50vw] h-[70vh] w-[100vw] mt-20">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart width={500} height={400} margin={{ top: 50, bottom: 20 }}>
+                    <text
+                      x={500 / 2}
+                      y={20}
+                      fill="black"
+                      className="font-bold text-lg"
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                    >
+                      <tspan x="50%" dy={-3} lengthAdjust="spacingAndGlyphs">
+                        Percentage of Emissions
+                      </tspan>
+                      <tspan x="50%" dy={17} lengthAdjust="spacingAndGlyphs">
+                        Generated by Each Mode
+                      </tspan>
+                    </text>
+                    <Pie
+                      data={metrics}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={renderCustomizedLabel}
+                      outerRadius={175}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {metrics.map(
+                        (_entry: { name: string; value: number }, index: number) => (
                           <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-                        ))}
-                      </Pie>
-                      <Legend
-                        payload={Object.keys(modeColors).map((mode: string) => ({
-                          value: mode,
-                          type: 'square',
-                          color: modeColors[mode] 
-                        }))}
-                        layout="horizontal" 
-                        verticalAlign="bottom"
-                        align='center'
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
+                        )
+                      )}
+                    </Pie>
+                    <Legend
+                      payload={Object.keys(modeColors).map((mode: string) => ({
+                        value: mode,
+                        type: 'square',
+                        color: modeColors[mode]
+                      }))}
+                      layout="horizontal"
+                      verticalAlign="bottom"
+                      align="center"
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
               </div>
-            }
-            {metrics[0] && 
-              <div className='flex flex-col justify-items-center mt-10 ml-12 mb-12 mr-12'>
-                  <div className='text-center text-lg font-bold'>Pie Chart Analysis</div>
-                  <div className='md:px-6 px-0 indent-5'>
-                    This chart utilizes the same calculated data as the bar chart finds the total CO2 emitted by the different modes of transportation.
-                    Then, using this total, it calculates the percentage of CO2 emitted by each mode of transportation. 
-                    <br/>
-                    <span className='font-medium'>
-                      Public Transportation: {publicTransport}% | Non-Public Transportation: {nonPublicTransport}%
-                    </span>
-                  </div>
+            )}
+            {metrics[0] && (
+              <div className="flex flex-col justify-items-center mt-10 ml-12 mb-12 mr-12">
+                <div className="text-center text-lg font-bold">Pie Chart Analysis</div>
+                <div className="md:px-6 px-0 indent-5">
+                  This chart utilizes the same calculated data as the bar chart finds the
+                  total CO2 emitted by the different modes of transportation. Then, using
+                  this total, it calculates the percentage of CO2 emitted by each mode of
+                  transportation.
+                  <br />
+                  <span className="font-medium">
+                    Public Transportation: {publicTransport}% | Non-Public Transportation:{' '}
+                    {nonPublicTransport}%
+                  </span>
+                </div>
               </div>
-            }
-          </div> 
+            )}
+          </div>
         </>
-      }
+      )}
     </>
   );
 }
