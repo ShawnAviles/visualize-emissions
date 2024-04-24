@@ -10,7 +10,7 @@ const MapLegend: React.FC<LegendProps> = ({ modeColors }) => {
       <div className="font-bold text-md mb-2">Legend</div>
       <div className="flex flex-wrap justify-center">
         {Object.entries(modeColors).map(([mode, color]) => (
-          <div key={mode} className="flex items-center mb-2 mr-4">
+          <div key={mode} className="flex items-center mb-2 mx-2">
             <div
               className="w-4 h-4 mr-1 rounded-full"
               style={{ backgroundColor: color }}
