@@ -1,5 +1,6 @@
 import { useState } from 'react';
 // import UploadWrapper from './UploadWrapper';
+import MapLegend from './MapLegend';
 
 const ScopeMenu = ({
   //Commented out certain props for uploading csv/xlsx files such as animation and useState variables
@@ -37,9 +38,16 @@ const ScopeMenu = ({
     setSelectedDataset(dataset);
     setDatasetFilter(dataset); // Call setDatasetFilter with the selected dataset
   };
+  const modeColors: { [key: string]: string } = {
+    Car: '#FF0000',
+    Bus: '#FFA500',
+    Trains: '#272B2E',
+    'Light Rail': '#C4A484',
+    Subway: '#7B5343'
+  };
 
   return (
-    <div className="md:w-96 md:h-76 z-10 md:left-2 left-0 md:top-2 top-0 p-4 md:mb-0 mb-1 flex-col bg-slate-50 rounded-xl md:absolute border-4 border-slate-400 blur-none">
+    <div className="md:w-100 md:h-76 z-10 md:left-2 left-0 md:top-2 top-0 p-4 md:mb-0 mb-1 flex-col bg-slate-50 rounded-xl md:absolute border-4 border-slate-400 blur-none">
       {/* <div className="mb-1 flex justify-between font-bold text-md">
         Select Data File
         <span className="text-sm text-gray-500 font-light">csv, xlsx</span>
@@ -123,6 +131,7 @@ const ScopeMenu = ({
           Both
         </button>
       </div>
+      <MapLegend modeColors={modeColors} />
     </div>
   );
 };
